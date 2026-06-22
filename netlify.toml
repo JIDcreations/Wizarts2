@@ -1,0 +1,3 @@
+# Serve the mirrored homepage (which lives in site/) as the site root.
+[build]
+  publish = "site"
