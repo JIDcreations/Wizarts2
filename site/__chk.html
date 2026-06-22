@@ -1414,7 +1414,7 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
   bar.addEventListener('click',function(e){var b=e.target.closest('button');if(b)select(b.dataset.k);});
 
   var saved; try{saved=localStorage.getItem('wzHero');}catch(e){}
-  var initial=saved||'a';   // first visit shows concept A (the recommended direction)
+  var initial='orig';   // first visit shows concept A (the recommended direction)
   paint(initial);
 
   // Complianz blocks every <iframe> in a one-time scan on DOMContentLoaded.

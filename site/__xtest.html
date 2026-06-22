@@ -1,0 +1,90 @@
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://use.typekit.net/ygi5aww.css"><style id="wz-home-vibe">
+:root{--wz-paars:#6C4CDF;--wz-paars-licht:#AAA7F4;--wz-groen:#71FFD0;--wz-oranje:#FDAC6C;--wz-navy:#000033;--wz-beige:#FFFCF8}
+html{scroll-behavior:smooth}
+body{background:var(--wz-beige)}
+/* ===== Expertise section (two-pillar) ===== */
+.wz-expertise{width:100vw;margin-left:calc(50% - 50vw);background:var(--wz-beige);padding:clamp(64px,9vw,140px) 0;position:relative;overflow:hidden;
+  font-family:'degular','Hanken Grotesk',system-ui,-apple-system,sans-serif}
+.wz-x-inner{max-width:1220px;margin:0 auto;padding:0 clamp(24px,4vw,56px)}
+.wz-eyebrow{font-weight:600;font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;color:var(--wz-paars);margin:0 0 1rem}
+.wz-x-title{font-weight:600;letter-spacing:-.025em;line-height:1.02;font-size:clamp(2rem,4.4vw,3.4rem);color:var(--wz-navy);max-width:20ch;margin:0 0 clamp(34px,4vw,58px)}
+.wz-x-title span{color:var(--wz-paars)}
+.wz-x-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2vw,26px)}
+@media(max-width:820px){.wz-x-grid{grid-template-columns:1fr}}
+.wz-card{position:relative;border-radius:28px;padding:clamp(28px,3vw,46px);overflow:hidden;display:flex;
+  transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s}
+.wz-card:hover{transform:translateY(-6px)}
+.wz-card-body{position:relative;z-index:2;display:flex;flex-direction:column;flex:1}
+.wz-num{position:absolute;top:clamp(24px,3vw,40px);right:clamp(26px,3vw,44px);z-index:3;font-size:.82rem;font-weight:600;opacity:.55}
+.wz-ic{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;margin-bottom:1.5rem}
+.wz-card h3{font-weight:600;font-size:clamp(1.5rem,2.4vw,2.05rem);letter-spacing:-.02em;margin:0 0 .85rem;line-height:1.04}
+.wz-card .wz-card-body>p{font-size:1.02rem;line-height:1.55;margin:0 0 1.7rem;max-width:36ch}
+.wz-list{list-style:none;margin:0 0 2rem;padding:0;display:flex;flex-direction:column;gap:.75rem}
+.wz-list li{display:flex;align-items:center;gap:.65rem;font-size:.97rem}
+.wz-list svg{flex:none;width:18px;height:18px}
+.wz-card-link{margin-top:auto;display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:.98rem;align-self:flex-start}
+.wz-card-link svg{transition:transform .3s}.wz-card:hover .wz-card-link svg{transform:translateX(4px)}
+.wz-tex{position:absolute;inset:0;z-index:0;pointer-events:none}
+/* screen / digital card — dark */
+.wz-card.screen{background:radial-gradient(120% 100% at 12% 0,#241a47 0,#160f2c 55%,#100b22 100%);color:#fff;box-shadow:0 34px 70px -34px rgba(20,14,40,.7)}
+.wz-card.screen .wz-tex{opacity:.55;background-image:linear-gradient(rgba(170,167,244,.13) 1px,transparent 1px),linear-gradient(90deg,rgba(170,167,244,.13) 1px,transparent 1px);background-size:42px 42px;-webkit-mask-image:radial-gradient(75% 70% at 82% 8%,#000,transparent);mask-image:radial-gradient(75% 70% at 82% 8%,#000,transparent)}
+.wz-card.screen .wz-ic{background:rgba(170,167,244,.16);color:var(--wz-groen)}
+.wz-card.screen .wz-card-body>p{color:rgba(255,255,255,.72)}
+.wz-card.screen .wz-list li{color:rgba(255,255,255,.86)} .wz-card.screen .wz-list svg{color:var(--wz-groen)}
+.wz-card.screen .wz-card-link{color:var(--wz-groen)}
+/* hand / print card — warm light */
+.wz-card.hand{background:#fff;border:1px solid rgba(0,0,51,.08);color:var(--wz-navy);box-shadow:0 34px 70px -38px rgba(48,33,101,.32)}
+.wz-card.hand .wz-tex{opacity:.6;background-image:radial-gradient(rgba(253,172,108,.55) 1.1px,transparent 1.3px);background-size:16px 16px;-webkit-mask-image:radial-gradient(70% 70% at 88% 92%,#000,transparent);mask-image:radial-gradient(70% 70% at 88% 92%,#000,transparent)}
+.wz-card.hand .wz-ic{background:rgba(108,76,223,.1);color:var(--wz-paars)}
+.wz-card.hand .wz-card-body>p{color:rgba(0,0,51,.66)}
+.wz-card.hand .wz-list li{color:rgba(0,0,51,.8)} .wz-card.hand .wz-list svg{color:var(--wz-oranje)}
+.wz-card.hand .wz-card-link{color:var(--wz-paars)}
+/* ambient floating element echoing the hero */
+.wz-float{position:absolute;right:3%;top:7%;width:clamp(90px,9vw,140px);opacity:.85;pointer-events:none;animation:wz-fl 8s ease-in-out infinite}
+@keyframes wz-fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+@media(max-width:980px){.wz-float{display:none}}
+@media(prefers-reduced-motion:reduce){.wz-float{animation:none}}
+</style><style>body{margin:0}</style></head>
+<body><section class="wz-expertise" id="wz-expertise" aria-labelledby="wz-x-h">
+  <img class="wz-float" src="hero-concepts/assets/elements/sphere.gif" alt="" aria-hidden="true">
+  <div class="wz-x-inner">
+    <p class="wz-eyebrow">Expertise</p>
+    <h2 class="wz-x-title" id="wz-x-h">Twee werelden. Eén <span>naadloze</span> merkervaring.</h2>
+    <div class="wz-x-grid">
+
+      <article class="wz-card screen">
+        <div class="wz-tex"></div>
+        <div class="wz-num">01</div>
+        <div class="wz-card-body">
+          <div class="wz-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4z"/><path d="M19 14l.6 1.6L21.5 16l-1.9.6L19 18.5l-.6-1.9L16.5 16z"/></svg></div>
+          <h3>AI Digital Experts</h3>
+          <p>Razendsnelle, AI-gedreven websites op een fundament van ijzersterke techniek. De tijd die AI wint, investeren wij in conversie, UX en gemoedsrust.</p>
+          <ul class="wz-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L20 7"/></svg>AI-driven webdesign &amp; e-commerce</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L20 7"/></svg>Hosting &amp; digitale zekerheid</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L20 7"/></svg>SEO, advertising &amp; digitale groei</li>
+          </ul>
+          <a class="wz-card-link" href="#">Ontdek digitaal<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <article class="wz-card hand">
+        <div class="wz-tex"></div>
+        <div class="wz-num">02</div>
+        <div class="wz-card-body">
+          <div class="wz-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 9V3h12v6M6 18H4v-5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5h-2"/><rect x="7" y="14" width="10" height="7" rx="1"/></svg></div>
+          <h3>Premium Print Experts</h3>
+          <p>In een scherm-vermoeide wereld is tastbaarheid het ultieme luxeproduct. Wij vertalen je merk naar drukwerk dat je voelt — van naamkaartje tot gevel.</p>
+          <ul class="wz-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L20 7"/></svg>Tactiele branding &amp; drukwerk</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L20 7"/></svg>Premium verpakkingen</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L20 7"/></svg>Grootformaat &amp; buitenreclame</li>
+          </ul>
+          <a class="wz-card-link" href="#">Ontdek print<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section></body></html>
