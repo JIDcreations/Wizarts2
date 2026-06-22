@@ -28,12 +28,10 @@ img,svg{display:block;max-width:100%}
   -webkit-mask-image:radial-gradient(70% 70% at 50% 45%,#000,transparent);mask-image:radial-gradient(70% 70% at 50% 45%,#000,transparent)}
 canvas#dust{position:absolute;inset:0;pointer-events:none}
 
-/* floating wireframe accents */
-.geo{position:absolute;pointer-events:none;color:var(--paars);opacity:.5}
-.geo.x{top:18%;left:12%;animation:spin 22s linear infinite}
-.geo.ring{bottom:16%;right:13%;width:120px;height:120px;border:1.5px solid var(--paars);border-radius:50%;
-  background:radial-gradient(circle at 35% 30%,rgba(108,76,223,.18),transparent 60%);animation:float 7s ease-in-out infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
+/* floating 3D elements (animated GIFs) */
+.geo{position:absolute;pointer-events:none;height:auto}
+.geo.sphere{bottom:11%;right:9%;width:clamp(110px,11vw,170px);opacity:.95;animation:float 7s ease-in-out infinite}
+.geo.cross{top:14%;left:9%;width:clamp(80px,8vw,124px);opacity:.95;animation:float 8.5s ease-in-out infinite reverse}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
 
 /* nav */
@@ -148,8 +146,8 @@ html[data-theme="dark"] .theme-toggle .ic-moon{display:block}
 <div class="stage" id="stage">
   <div class="bg"></div><div class="dots"></div>
   <canvas id="dust"></canvas>
-  <svg class="geo x" width="70" height="70" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M16 16 64 64M64 16 16 64"/></svg>
-  <div class="geo ring"></div>
+  <img class="geo sphere" src="assets/elements/sphere.gif" alt="" aria-hidden="true">
+  <img class="geo cross" src="assets/elements/x-orange.gif" alt="" aria-hidden="true">
 
   <header class="nav">
     <a class="brand" href="../" target="_top" aria-label="Wizarts"><img src="assets/wizarts-logo.svg" alt="Wizarts"></a>
