@@ -224,6 +224,7 @@ ol,ul{box-sizing:border-box}:root :where(.wp-block-list.has-background){padding:
 </head>
 
 <body class="home wp-singular page-template-default page page-id-9 wp-custom-logo wp-theme-Wizarts">
+<script>/* set theme before paint to avoid a flash */(function(){try{var m=localStorage.getItem('wzTheme');if(!m)m=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';if(m==='dark')document.documentElement.classList.add('wz-dark');}catch(e){}})();</script>
 		<!-- Google Tag Manager (noscript) snippet added by Site Kit -->
 		<noscript>
 			<iframe src="./_ext/www.googletagmanager.com/ns_id_GTM_59ZP8LR.html" height="0" width="0" style="display:none;visibility:hidden"></iframe>
@@ -1357,6 +1358,9 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
 #wz-switch button b{font-weight:700;margin-right:.3em}
 #wz-switch .wz-sep{width:1px;height:20px;background:rgba(255,255,255,.16);margin:0 2px}
 #wz-switch .wz-name{opacity:.7;font-weight:500}
+#wz-theme{font-size:1rem;line-height:1;padding:.5rem .7rem}
+#wz-theme .wz-theme-ic{display:block}
+#wz-theme[aria-pressed="true"]{background:rgba(255,255,255,.14)}
 @media(max-width:720px){#wz-switch .wz-cap,#wz-switch .wz-name{display:none}}
 </style>
 
@@ -1366,10 +1370,12 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
   <span class="wz-cap">Hero&nbsp;ontwerp</span>
   <button data-k="orig">Origineel</button>
   <span class="wz-sep"></span>
-  <button data-k="a"><b>A</b><span class="wz-name">Screen×Hand</span></button>
-  <button data-k="b"><b>B</b><span class="wz-name">Kinetic</span></button>
+  <button data-k="a"><b>A</b><span class="wz-name">Kinetic</span></button>
+  <button data-k="b"><b>B</b><span class="wz-name">Screen×Hand</span></button>
   <button data-k="c"><b>C</b><span class="wz-name">Spell</span></button>
   <button data-k="d"><b>D</b><span class="wz-name">Builds</span></button>
+  <span class="wz-sep"></span>
+  <button id="wz-theme" type="button" aria-pressed="false" aria-label="Donkere modus wisselen" title="Licht / donker"><span class="wz-theme-ic">🌙</span></button>
 </nav>
 
 <script>
@@ -1380,7 +1386,8 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
   var bar=document.getElementById('wz-switch');
   if(!hero||!mount){return;}
   document.body.insertBefore(mount, document.body.firstChild);   // full-width mount at the very top (body has no max-width)
-  var FILES={a:'hero-concepts/a-screen-hand.html',b:'hero-concepts/b-kinetic-type.html',
+  // A is now the Kinetic hero — the recommended direction, shown first.
+  var FILES={a:'hero-concepts/b-kinetic-type.html',b:'hero-concepts/a-screen-hand.html',
              c:'hero-concepts/c-spell.html',d:'hero-concepts/d-self-building.html'};
   var frame=null, ready=false, pending=null;
 
@@ -1422,6 +1429,94 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
   function boot(){ ready=true; apply(pending||initial); }
   if(document.readyState==='complete') setTimeout(boot,80);
   else window.addEventListener('load', function(){ setTimeout(boot,80); });
+})();
+</script>
+
+<!-- ════════ WIZARTS — site-wide DARK MODE ════════ -->
+<style id="wz-dark-mode">
+/* Scoped under html.wz-dark so light mode is untouched. The theme is built on
+   var(--zwart) for ink and var(--beige)/var(--wit) for light surfaces, so we
+   remap those two background-only/ink vars and override the WP colour-utility
+   classes used as full-width section backgrounds. Accent hues (paars/groen/
+   oranje/roze) stay as accents on text, icons and buttons. */
+html.wz-dark{color-scheme:dark;--beige:#0c0920;--zwart:#ECEAF8}
+html.wz-dark,html.wz-dark body{background:#0c0920}
+
+/* neutral light surfaces -> dark surface */
+html.wz-dark .has-wit-background-color,
+html.wz-dark .has-white-background-color,
+html.wz-dark .has-beige-background-color,
+html.wz-dark .has-cyan-bluish-gray-background-color{background-color:#13102a!important}
+
+/* light-lavender surfaces */
+html.wz-dark .has-roze-background-color{background-color:#1a1440!important}
+html.wz-dark .has-licht-paars-background-color{background-color:#231b50!important}
+
+/* bright accent panels -> deep tinted surfaces (keep the hue identity) */
+html.wz-dark .has-groen-background-color{background-color:#0d3a31!important}
+html.wz-dark .has-oranje-background-color{background-color:#38260f!important}
+html.wz-dark .has-paars-background-color{background-color:#3a2885!important}
+html.wz-dark .has-donker-paars-background-color{background-color:#181048!important}
+
+/* already-dark panels -> near-black */
+html.wz-dark .has-zwart-background-color,
+html.wz-dark .has-black-background-color{background-color:#06040f!important}
+
+/* ink: anything explicitly dark becomes light */
+html.wz-dark .has-zwart-color,
+html.wz-dark .has-black-color,
+html.wz-dark .has-donker-paars-color{color:#ECEAF8!important}
+/* lift purple text so it stays legible on dark */
+html.wz-dark .has-paars-color{color:#AAA7F4!important}
+
+/* darkened panels: make sure descendant copy reads light */
+html.wz-dark .has-roze-background-color,
+html.wz-dark .has-licht-paars-background-color,
+html.wz-dark .has-groen-background-color,
+html.wz-dark .has-oranje-background-color{color:#ECEAF8}
+
+/* outlined light buttons -> readable on dark */
+html.wz-dark a.wp-block-button__link.has-wit-background-color,
+html.wz-dark a.wp-block-button__link.has-beige-background-color{
+  color:#ECEAF8!important;border-color:rgba(170,167,244,.32)!important}
+
+/* header (visible in "Origineel" mode) */
+html.wz-dark .site-header{background:#0c0920;border-bottom:1px solid rgba(170,167,244,.12)}
+html.wz-dark .site-header a,
+html.wz-dark .menu-hoofdmenu-container a{color:#ECEAF8}
+
+/* footer base */
+html.wz-dark footer{background:#0c0920}
+
+/* custom "Expertise" section — flip the light (print) card to dark */
+html.wz-dark .wz-x-title{color:#ECEAF8}
+html.wz-dark .wz-x-title span{color:#AAA7F4}
+html.wz-dark .wz-card.hand{background:#13102a;border-color:rgba(170,167,244,.14);color:#ECEAF8;
+  box-shadow:0 34px 70px -38px rgba(0,0,0,.6)}
+html.wz-dark .wz-card.hand .wz-card-body>p{color:rgba(236,234,248,.7)}
+html.wz-dark .wz-card.hand .wz-list li{color:rgba(236,234,248,.86)}
+html.wz-dark .wz-card.hand .wz-ic{background:rgba(170,167,244,.14);color:#AAA7F4}
+html.wz-dark .wz-card.hand .wz-card-link{color:#AAA7F4}
+</style>
+<script>
+(function(){
+  var btn=document.getElementById('wz-theme');
+  var root=document.documentElement;
+  function apply(mode){
+    var dark=mode==='dark';
+    root.classList.toggle('wz-dark',dark);
+    if(btn){
+      var ic=btn.querySelector('.wz-theme-ic'); if(ic) ic.textContent=dark?'☀️':'🌙';
+      btn.setAttribute('aria-pressed',dark?'true':'false');
+    }
+    try{localStorage.setItem('wzTheme',mode);}catch(e){}
+  }
+  var saved; try{saved=localStorage.getItem('wzTheme');}catch(e){}
+  var prefersDark=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;
+  apply(saved||(prefersDark?'dark':'light'));
+  if(btn) btn.addEventListener('click',function(){
+    apply(root.classList.contains('wz-dark')?'light':'dark');
+  });
 })();
 </script>
 
