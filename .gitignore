@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+
+# Local Claude Code settings (machine-specific)
+.claude/
+
+# Heavy reference material — CEO concept files & big design GIFs.
+# Kept locally, not pushed. Remove these lines (or use Git LFS) if you want them versioned.
+[Ii]nspo/
+[Ee]lements/

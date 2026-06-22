@@ -1,0 +1,52 @@
+/*
+ * The Typekit service used to deliver this font or fonts for use on websites
+ * is provided by Adobe and is subject to these Terms of Use
+ * http://www.adobe.com/products/eulas/tou_typekit. For font license
+ * information, see the list below.
+ *
+ * degular:
+ *   - http://typekit.com/eulas/00000000000000007735c867
+ *   - http://typekit.com/eulas/00000000000000007735c86d
+ *   - http://typekit.com/eulas/00000000000000007735c872
+ *   - http://typekit.com/eulas/00000000000000007735c877
+ * montserrat:
+ *   - http://typekit.com/eulas/00000000000000007735a193
+ *
+ * © 2009-2026 Adobe Systems Incorporated. All Rights Reserved.
+ */
+/*{"last_published":"2024-01-30 08:27:12 UTC"}*/
+
+@import url("../p.typekit.net/p_s_1_k_ygi5aww_ht_tk_f_37464_44510_44512.css");
+
+@font-face {
+font-family:"montserrat";
+src:url("./af/2180b4/00000000000000007735a193/30/l/index_primer_7cdcb44be4a7db8877ffa5c0007b8dd8.html") format("woff2"),url("./af/2180b4/00000000000000007735a193/30/d/index_primer_7cdcb44be4a7db8877ffa5c0007b8dd8.html") format("woff"),url("./af/2180b4/00000000000000007735a193/30/a/index_primer_7cdcb44be4a7db8877ffa5c0007b8dd8.html") format("opentype");
+font-display:auto;font-style:normal;font-weight:600;font-stretch:normal;
+}
+
+@font-face {
+font-family:"degular";
+src:url("./af/174e41/00000000000000007735c867/30/l/index_primer_7cdcb44be4a7db8877ffa5c0007b8dd8.html") format("woff2"),url("./af/174e41/00000000000000007735c867/30/d/index_primer_7cdcb44be4a7db8877ffa5c0007b8dd8.html") format("woff"),url("./af/174e41/00000000000000007735c867/30/a/index_primer_7cdcb44be4a7db8877ffa5c0007b8dd8.html") format("opentype");
+font-display:auto;font-style:normal;font-weight:400;font-stretch:normal;
+}
+
+@font-face {
+font-family:"degular";
+src:url("./af/11ba66/00000000000000007735c86d/30/l/index_primer_7cdcb44be4a7db8877ffa5c0007b8dd8.html") format("woff2"),url("./af/11ba66/00000000000000007735c86d/30/d/index_primer_7cdcb44be4a7db8877ffa5c0007b8dd8.html") format("woff"),url("./af/11ba66/00000000000000007735c86d/30/a/index_primer_7cdcb44be4a7db8877ffa5c0007b8dd8.html") format("opentype");
+font-display:auto;font-style:normal;font-weight:500;font-stretch:normal;
+}
+
+@font-face {
+font-family:"degular";
+src:url("./af/2fce28/00000000000000007735c872/30/l/index_primer_7cdcb44be4a7db8877ffa5c0007b8dd8.html") format("woff2"),url("./af/2fce28/00000000000000007735c872/30/d/index_primer_7cdcb44be4a7db8877ffa5c0007b8dd8.html") format("woff"),url("./af/2fce28/00000000000000007735c872/30/a/index_primer_7cdcb44be4a7db8877ffa5c0007b8dd8.html") format("opentype");
+font-display:auto;font-style:normal;font-weight:600;font-stretch:normal;
+}
+
+@font-face {
+font-family:"degular";
+src:url("./af/36a2f5/00000000000000007735c877/30/l/index_primer_7cdcb44be4a7db8877ffa5c0007b8dd8.html") format("woff2"),url("./af/36a2f5/00000000000000007735c877/30/d/index_primer_7cdcb44be4a7db8877ffa5c0007b8dd8.html") format("woff"),url("./af/36a2f5/00000000000000007735c877/30/a/index_primer_7cdcb44be4a7db8877ffa5c0007b8dd8.html") format("opentype");
+font-display:auto;font-style:normal;font-weight:700;font-stretch:normal;
+}
+
+.tk-montserrat { font-family: "montserrat",sans-serif; }
+.tk-degular { font-family: "degular",sans-serif; }

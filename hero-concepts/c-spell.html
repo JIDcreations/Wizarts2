@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wizarts — Hero C · The Spell</title>
+<link rel="icon" href="assets/wizarts-icon.svg" />
+<link rel="stylesheet" href="https://use.typekit.net/ygi5aww.css" />
+<style>
+:root{
+  --paars:#6C4CDF; --paars-licht:#AAA7F4; --roze:#DFD0F3;
+  --groen:#71FFD0; --oranje:#FDAC6C; --navy:#000033; --wit:#FFFEFD;
+  --f:'degular','Hanken Grotesk',system-ui,-apple-system,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:var(--f);background:#0a0717;color:var(--wit);overflow:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}img,svg{display:block;max-width:100%}
+.stage{position:relative;width:100vw;height:100vh;overflow:hidden;display:grid;place-items:center;cursor:none}
+.bg{position:absolute;inset:0;background:
+  radial-gradient(60% 55% at 50% 38%, #221747 0%, #130d2a 45%, #0a0717 100%);}
+.bg .grid{position:absolute;inset:0;opacity:.35;
+  background-image:linear-gradient(rgba(170,167,244,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(170,167,244,.12) 1px,transparent 1px);
+  background-size:54px 54px;-webkit-mask-image:radial-gradient(70% 70% at 50% 45%,#000,transparent);mask-image:radial-gradient(70% 70% at 50% 45%,#000,transparent)}
+canvas#spell{position:absolute;inset:0;z-index:2}
+
+/* custom wand cursor */
+#wand{position:fixed;top:0;left:0;z-index:30;pointer-events:none;transform:translate(-50%,-50%);mix-blend-mode:screen}
+#wand .dot{width:10px;height:10px;border-radius:50%;background:var(--groen);box-shadow:0 0 16px 4px rgba(113,255,208,.8)}
+#wand .ring{position:absolute;top:50%;left:50%;width:46px;height:46px;border-radius:50%;border:1.5px solid rgba(170,167,244,.7);transform:translate(-50%,-50%);transition:width .25s,height .25s}
+#wand.hot .ring{width:70px;height:70px;border-color:var(--groen)}
+
+/* nav */
+.nav{position:absolute;inset:0 0 auto 0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:26px clamp(24px,4vw,56px)}
+.nav img{height:26px;filter:brightness(0) invert(1)}
+.nav-links{display:flex;gap:30px;align-items:center;font-weight:500;font-size:.95rem}
+.nav-links a{position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-5px;height:1.5px;width:100%;background:var(--groen);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.nav-links a:hover::after{transform:scaleX(1)}
+/* expertise dropdown (Stijn-style mega panel) */
+.has-drop{position:relative;display:inline-flex;align-items:center}
+.trigger{display:inline-flex;align-items:center;gap:6px;background:none;border:0;font:inherit;color:inherit;cursor:pointer}
+.drop{position:absolute;left:50%;top:100%;padding-top:16px;transform:translateX(-50%) translateY(6px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s,transform .25s,visibility .25s;z-index:60}
+.has-drop:hover .drop,.has-drop:focus-within .drop{opacity:1;visibility:visible;transform:translateX(-50%);pointer-events:auto}
+.drop-inner{width:23rem;background:#fff;border:1px solid rgba(0,0,51,.1);border-radius:18px;box-shadow:0 26px 60px -22px rgba(48,33,101,.5);padding:8px}
+.drop a{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:12px;transition:background .2s}
+.drop a:hover{background:rgba(108,76,223,.08)}
+.drop a::after{display:none!important}
+.drop .ic{color:var(--paars);flex:none;margin-top:1px}
+.drop .t{font-weight:600;color:#1A1430;font-size:.95rem;display:block}
+.drop .d{color:rgba(0,0,51,.55);font-size:.78rem;line-height:1.3;display:block;margin-top:2px}
+.drop .sep{height:1px;background:rgba(0,0,51,.1);margin:6px 8px}
+.chev{transition:transform .25s}
+.has-drop:hover .chev,.has-drop:focus-within .chev{transform:rotate(180deg)}
+.nav-cta{background:var(--paars);color:#fff;padding:.7rem 1.25rem;border-radius:9999px;font-weight:600;font-size:.92rem}
+@media(max-width:760px){.nav-links{display:none}}
+
+/* content */
+.wrap{position:relative;z-index:6;text-align:center;padding:0 6vw;max-width:1080px;pointer-events:none}
+.wrap a{pointer-events:auto}
+.eyebrow{font-weight:600;font-size:clamp(.7rem,1.1vw,.82rem);letter-spacing:.32em;text-transform:uppercase;color:var(--paars-licht);margin-bottom:1.5rem}
+.eyebrow b{color:var(--groen);font-weight:600}
+h1{font-weight:600;letter-spacing:-.03em;line-height:.94;font-size:clamp(2.7rem,8.4vw,7.4rem)}
+h1 .accent{background:linear-gradient(100deg,var(--paars-licht),var(--groen));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{margin:1.9rem auto 0;max-width:34rem;font-size:clamp(1rem,1.5vw,1.2rem);line-height:1.5;color:rgba(255,255,255,.7)}
+.actions{margin-top:2.3rem;display:flex;gap:14px;justify-content:center}
+.btn{font:600 1rem/1 var(--f);padding:1.05rem 1.7rem;border-radius:9999px;display:inline-flex;align-items:center;gap:.6rem;transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s}
+.btn.primary{background:var(--paars);color:#fff;box-shadow:0 12px 30px -8px rgba(108,76,223,.7)}
+.btn.primary:hover{transform:translateY(-3px)}
+.btn.ghost{border:1px solid rgba(170,167,244,.45);color:#fff}
+.btn.ghost:hover{transform:translateY(-3px);background:rgba(170,167,244,.12)}
+.hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:20;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.hint b{color:var(--groen)}
+@media (prefers-reduced-motion:reduce){#spell{display:none}}
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <div class="bg"><div class="grid"></div></div>
+  <canvas id="spell"></canvas>
+
+  <header class="nav">
+    <a href="../" target="_top" aria-label="Wizarts"><img src="assets/wizarts-logo.svg" alt="Wizarts"></a>
+    <nav class="nav-links">
+      <div class="has-drop">
+        <button class="trigger" aria-haspopup="true" aria-expanded="false">Expertise<svg class="chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="drop"><div class="drop-inner">
+          <a href="../expertise/webdesign/" target="_top"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M3 8h18M8 21h8"/></svg></span><span><span class="t">Webdesign</span><span class="d">AI-gedreven sites, e-commerce &amp; hosting</span></span></a>
+          <a href="../expertise/branding/" target="_top"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4z"/></svg></span><span><span class="t">Branding</span><span class="d">Logo, huisstijl &amp; grafische vormgeving</span></span></a>
+          <a href="../expertise/marketing/" target="_top"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 18l5-5 3 3 7-7"/><path d="M16 9h4v4"/></svg></span><span><span class="t">Marketing</span><span class="d">SEO, advertising &amp; social</span></span></a>
+          <a href="../expertise/print/" target="_top"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 9V3h12v6M6 18H4v-5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5h-2"/><rect x="7" y="14" width="10" height="7" rx="1"/></svg></span><span><span class="t">Print</span><span class="d">Drukwerk, grootformaat &amp; buitenreclame</span></span></a>
+          <div class="sep"></div>
+          <a href="../wizarts-pro/" target="_top"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/><path d="M11 7h4a2 2 0 0 1 2 2v4"/></svg></span><span><span class="t">Wizarts&nbsp;Pro</span><span class="d">White-label partner voor agencies</span></span></a>
+        </div></div>
+      </div>
+      <a href="../alle-projecten/" target="_top">Werk</a>
+      <a href="../over-ons/" target="_top">Over ons</a>
+    </nav>
+    <a class="nav-cta" href="../contact/" target="_top">Contact</a>
+  </header>
+
+  <div class="wrap">
+    <p class="eyebrow">Creatief bureau · <b>een beetje magie</b></p>
+    <h1>Gedreven door AI, gemaakt door <span class="accent">mensen</span>.</h1>
+    <p class="sub">Wat nu als je de snelheid kreeg van AI, maar de passie van mensen? Bij Wizarts bundelen we het beste van beide werelden om jouw zaak te laten groeien.</p>
+    <div class="actions">
+      <a href="#" class="btn primary">Start je project
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="#" class="btn ghost">Bekijk ons werk</a>
+    </div>
+  </div>
+
+  <div class="hint">beweeg om te toveren · <b>klik</b> voor een spreuk</div>
+</div>
+
+<div id="wand"><div class="dot"></div><div class="ring"></div></div>
+
+<script>
+const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+const stage=document.getElementById('stage');
+const wand=document.getElementById('wand');
+const cv=document.getElementById('spell'),cx=cv.getContext('2d');
+let W,H; function resize(){W=cv.width=innerWidth*devicePixelRatio;H=cv.height=innerHeight*devicePixelRatio;cx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);}
+resize();addEventListener('resize',resize);
+
+const PURPLE=[108,76,223], LILAC=[170,167,244], GREEN=[113,255,208], ORANGE=[253,172,108];
+const palette=[PURPLE,LILAC,GREEN,ORANGE];
+const TYPES=['sphere','cube','x','spark'];
+let parts=[];
+let mx=innerWidth/2,my=innerHeight/2,pmx=mx,pmy=my,moved=false;
+
+function spawn(x,y,n,burst){
+  for(let i=0;i<n;i++){
+    const ang=Math.random()*Math.PI*2, spd=burst?(Math.random()*5+2):(Math.random()*1.2+.2);
+    parts.push({x,y,vx:Math.cos(ang)*spd+(burst?0:(x-pmx)*.06),vy:Math.sin(ang)*spd+(burst?0:(y-pmy)*.06),
+      life:1,decay:Math.random()*.012+.006,size:Math.random()*16+8,rot:Math.random()*6,vr:(Math.random()-.5)*.12,
+      type:TYPES[(Math.random()*TYPES.length)|0],col:palette[(Math.random()*palette.length)|0]});
+  }
+  if(parts.length>900)parts.splice(0,parts.length-900);
+}
+function shape(p){
+  const a=p.life, [r,g,b]=p.col, s=p.size*(burstScale(p));
+  cx.save();cx.translate(p.x,p.y);cx.rotate(p.rot);cx.globalAlpha=a;
+  cx.strokeStyle=`rgba(${r},${g},${b},${a})`;cx.fillStyle=`rgba(${r},${g},${b},${a})`;cx.lineWidth=1.6;
+  if(p.type==='sphere'){cx.beginPath();cx.arc(0,0,s/2,0,7);cx.stroke();
+    cx.globalAlpha=a*.5;cx.beginPath();cx.ellipse(0,0,s/2,s/6,0,0,7);cx.stroke();}
+  else if(p.type==='cube'){cx.strokeRect(-s/2,-s/2,s,s);const o=s*.3;cx.strokeRect(-s/2+o,-s/2-o,s,s);
+    cx.beginPath();cx.moveTo(-s/2,-s/2);cx.lineTo(-s/2+o,-s/2-o);cx.moveTo(s/2,-s/2);cx.lineTo(s/2+o,-s/2-o);
+    cx.moveTo(s/2,s/2);cx.lineTo(s/2+o,s/2-o);cx.moveTo(-s/2,s/2);cx.lineTo(-s/2+o,s/2-o);cx.stroke();}
+  else if(p.type==='x'){cx.beginPath();cx.moveTo(-s/2,-s/2);cx.lineTo(s/2,s/2);cx.moveTo(s/2,-s/2);cx.lineTo(-s/2,s/2);cx.stroke();}
+  else{cx.beginPath();for(let i=0;i<4;i++){const ang=i*Math.PI/2;cx.moveTo(0,0);cx.lineTo(Math.cos(ang)*s/2,Math.sin(ang)*s/2);}cx.stroke();
+    cx.beginPath();cx.arc(0,0,1.6,0,7);cx.fill();}
+  cx.restore();
+}
+function burstScale(p){return 1+(1-p.life)*0.4;}
+
+addEventListener('pointermove',e=>{
+  mx=e.clientX;my=e.clientY;moved=true;
+  wand.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`;
+  if(!reduce){const d=Math.hypot(mx-pmx,my-pmy);if(d>6)spawn(mx,my,Math.min(3,1+d/40|0),false);}
+});
+addEventListener('pointerdown',e=>{wand.classList.add('hot');if(!reduce)spawn(e.clientX,e.clientY,40,true);});
+addEventListener('pointerup',()=>wand.classList.remove('hot'));
+
+let t=0;
+(function loop(){
+  cx.clearRect(0,0,innerWidth,innerHeight);
+  // ambient idle conjuring near center when the user isn't moving
+  t++; if(!reduce && !moved && t%8===0){const ax=innerWidth/2+Math.cos(t/40)*180,ay=innerHeight*0.42+Math.sin(t/26)*90;spawn(ax,ay,1,false);}
+  cx.globalCompositeOperation='lighter';
+  for(let i=parts.length-1;i>=0;i--){const p=parts[i];
+    p.x+=p.vx;p.y+=p.vy;p.vx*=.96;p.vy*=.96;p.vy+=.02;p.rot+=p.vr;p.life-=p.decay;
+    if(p.life<=0){parts.splice(i,1);continue;}shape(p);}
+  cx.globalCompositeOperation='source-over';
+  pmx=mx;pmy=my;
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

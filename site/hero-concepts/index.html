@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wizarts — Hero Concepten</title>
+<link rel="icon" href="assets/wizarts-icon.svg" />
+<link rel="stylesheet" href="https://use.typekit.net/ygi5aww.css" />
+<style>
+:root{
+  --paars:#6C4CDF; --paars-donker:#302165; --paars-licht:#AAA7F4;
+  --roze:#DFD0F3; --groen:#71FFD0; --oranje:#FDAC6C;
+  --navy:#000033; --wit:#FFFEFD; --beige:#FFFCF8;
+  --f:'degular','Hanken Grotesk',system-ui,-apple-system,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--f);background:var(--beige);color:var(--navy);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}img,svg{display:block;max-width:100%}
+
+header{max-width:1320px;margin:0 auto;padding:44px clamp(20px,4vw,48px) 8px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:16px}
+.brand img{height:30px}
+.brand .tag{font-weight:600;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--paars);border-left:1.5px solid rgba(108,76,223,.3);padding-left:16px}
+header p{max-width:30rem;color:rgba(0,0,51,.6);font-size:.98rem;line-height:1.5}
+
+.intro{max-width:1320px;margin:0 auto;padding:18px clamp(20px,4vw,48px) 0}
+.intro h1{font-weight:600;letter-spacing:-.03em;line-height:1.02;font-size:clamp(2rem,4.6vw,3.6rem);max-width:18ch}
+.intro h1 .accent{color:var(--paars)}
+.intro .hint{margin-top:14px;color:rgba(0,0,51,.55);font-size:.95rem}
+
+.grid{max-width:1320px;margin:0 auto;padding:34px clamp(20px,4vw,48px) 72px;display:grid;grid-template-columns:repeat(2,1fr);gap:30px}
+@media(max-width:880px){.grid{grid-template-columns:1fr}}
+
+.card{background:#fff;border:1px solid rgba(108,76,223,.14);border-radius:22px;overflow:hidden;
+  box-shadow:0 30px 60px -36px rgba(48,33,101,.4);transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s}
+.card:hover{transform:translateY(-5px);box-shadow:0 44px 80px -38px rgba(48,33,101,.55)}
+
+.preview{position:relative;aspect-ratio:16/10;overflow:hidden;background:#0b0816;border-bottom:1px solid rgba(108,76,223,.1);cursor:pointer}
+.preview iframe{position:absolute;top:0;left:0;border:0;transform-origin:top left;pointer-events:none}
+.preview .open{position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;
+  background:rgba(48,33,101,.0);opacity:0;transition:.35s;color:#fff;font-weight:600;letter-spacing:.02em}
+.preview:hover .open{opacity:1;background:rgba(48,33,101,.42);backdrop-filter:blur(2px)}
+.preview .open span{display:inline-flex;align-items:center;gap:.55rem;background:var(--paars);padding:.8rem 1.3rem;border-radius:9999px;box-shadow:0 12px 30px -8px rgba(0,0,0,.5)}
+.letter{position:absolute;top:14px;left:16px;z-index:2;width:34px;height:34px;border-radius:10px;background:rgba(11,8,22,.5);backdrop-filter:blur(6px);
+  color:#fff;font-weight:600;display:grid;place-items:center;border:1px solid rgba(255,255,255,.25)}
+
+.meta{padding:22px 24px 24px}
+.meta .row{display:flex;align-items:baseline;justify-content:space-between;gap:14px}
+.meta h2{font-weight:600;letter-spacing:-.01em;font-size:1.5rem}
+.meta .chip{font-weight:600;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--paars);background:rgba(108,76,223,.1);padding:.4rem .65rem;border-radius:9999px;white-space:nowrap}
+.meta p{margin-top:10px;color:rgba(0,0,51,.62);font-size:.96rem;line-height:1.5}
+.meta .feats{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+.meta .feats span{font-size:.78rem;color:rgba(0,0,51,.7);background:var(--beige);border:1px solid rgba(108,76,223,.14);padding:.3rem .6rem;border-radius:9999px}
+.meta .cta{margin-top:18px;display:inline-flex;align-items:center;gap:.5rem;font-weight:600;color:var(--paars)}
+.meta .cta svg{transition:transform .3s}
+.card:hover .meta .cta svg{transform:translateX(4px)}
+
+footer{max-width:1320px;margin:0 auto;padding:0 clamp(20px,4vw,48px) 60px;color:rgba(0,0,51,.45);font-size:.85rem}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <img src="assets/wizarts-logo.svg" alt="Wizarts">
+    <span class="tag">Hero concepten</span>
+  </div>
+  <p>Vier richtingen voor een nieuwe hero — elk een werkend prototype. Beweeg, sleep of klik erin. Klik op een preview om volledig te openen.</p>
+</header>
+
+<section class="intro">
+  <h1>Vier manieren om <span class="accent">meteen te tonen</span> wie we zijn.</h1>
+  <p class="hint">Aanbevolen startpunt: <strong>A — Screen × Hand</strong>. Het is het meest ‘typisch Wizarts’ omdat het letterlijk jullie strategie speelbaar maakt.</p>
+</section>
+
+<main class="grid" id="grid">
+  <!-- cards injected -->
+</main>
+
+<footer>© 2026 Wizarts — interne concept-preview · prototypes draaien volledig lokaal.</footer>
+
+<script>
+const CONCEPTS=[
+  {f:'kinetic-navs.html',l:'★',t:'Kinetic — nav-opties',chip:'Nav-studie',
+   d:'De Kinetic-hero met een live schakelaar tussen 4 kalme nav-varianten: Minimaal, Gecentreerd, Capsule en Lijn. Kies onderaan in beeld — of deel een specifieke versie via ?nav=v3.',
+   feats:['4 nav-stijlen','Live schakelaar','Deelbaar via URL','Kalm & modern']},
+  {f:'a-screen-hand.html',l:'A',t:'Screen × Hand',chip:'Aanbevolen',
+   d:'Eén headline in twee afwerkingen. Een levende naad volgt je cursor: links de digitale/AI-wereld, rechts de tactiele printwereld. Jullie strategie, speelbaar gemaakt.',
+   feats:['Interactieve naad','Cursor + sleep','Volledig CSS/JS','Snel & licht']},
+  {f:'b-kinetic-type.html',l:'B',t:'Kinetic Degular',chip:'Typografisch',
+   d:'De headline ís de kunst. Letters worden opgebouwd uit stof, “groeien” groeit letterlijk, en de subtekst typt zichzelf. Klik om opnieuw op te bouwen.',
+   feats:['Kinetische type','Self-typing','Dust canvas','Replay']},
+  {f:'c-spell.html',l:'C',t:'The Spell',chip:'Speels',
+   d:'Leun op de wizard. Je cursor is een toverstaf die merkvormen (bol, kubus, X) tovert in paars→groen. Beweeg om te casten, klik voor een spreuk.',
+   feats:['Wand-cursor','Particle magic','Klik = ripple','Awwwards-vibe']},
+  {f:'d-self-building.html',l:'D',t:'It Builds Itself',chip:'Verhalend',
+   d:'De pagina tekent zichzelf: wireframe → merkkleuren → content → een afwerkings-pass die het ondertekent. “Snelheid van AI, ziel van vakmanschap” als animatie.',
+   feats:['Live build-loop','Status-indicator','Tagline in actie','Licht & snel']},
+];
+const BASE_W=1440, BASE_H=900;
+const grid=document.getElementById('grid');
+CONCEPTS.forEach(c=>{
+  const card=document.createElement('article');card.className='card';
+  card.innerHTML=`
+    <div class="preview" data-href="${c.f}">
+      <span class="letter">${c.l}</span>
+      <iframe src="${c.f}" width="${BASE_W}" height="${BASE_H}" loading="lazy" scrolling="no" title="${c.t}"></iframe>
+      <div class="open"><span>Open volledig
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div>
+    </div>
+    <div class="meta">
+      <div class="row"><h2>${c.l} — ${c.t}</h2><span class="chip">${c.chip}</span></div>
+      <p>${c.d}</p>
+      <div class="feats">${c.feats.map(f=>`<span>${f}</span>`).join('')}</div>
+      <a class="cta" href="${c.f}">Open dit concept
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>`;
+  grid.appendChild(card);
+  card.querySelector('.preview').addEventListener('click',()=>location.href=c.f);
+});
+
+// scale the live iframes to fit each preview window
+function fit(){
+  document.querySelectorAll('.preview').forEach(p=>{
+    const ifr=p.querySelector('iframe');
+    const s=p.clientWidth/BASE_W;
+    ifr.style.transform=`scale(${s})`;
+    ifr.style.width=BASE_W+'px';ifr.style.height=(p.clientHeight/s)+'px';
+  });
+}
+addEventListener('resize',fit);addEventListener('load',fit);fit();
+</script>
+</body>
+</html>

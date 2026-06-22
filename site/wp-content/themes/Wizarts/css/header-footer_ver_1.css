@@ -1,0 +1,406 @@
+/*--------------------------------------------------------------------------------------*\
+| FOOTER
+\*--------------------------------------------------------------------------------------*/
+footer{
+    max-width: 100%;
+    margin: auto;
+}
+footer > *{
+    padding-left: calc(50% - var(--max-width) / 2);
+    padding-right: calc(50% - var(--max-width) / 2);
+}
+header .button p{
+	user-select: none;
+	font-size: 20px;
+}
+.footer-one{
+    display: flex;
+    justify-content: space-between;
+}
+footer > .cover:has(+ .columns){
+    padding-bottom: var(--spacing-medium);
+}
+footer > .columns{
+    position: relative;
+    justify-content: space-between;
+    padding-top: 0;
+}
+footer > .columns::before{
+    content: '';
+    position: absolute;
+    top: calc(0px - var(--spacing-medium));
+    left: 0px;
+    width: 100%;
+    background-color: var(--paars);
+    height: var(--spacing-medium);
+    border-radius: var(--border-radius-big) 0 0 0;
+}
+
+footer > .columns > *{
+    z-index: 1;
+    position: relative;
+}
+footer > .columns::after{
+    content: '';
+    background-image: url(../../../../_ext/wizarts.wizarts.be/wp-content/uploads/2024/01/Middel-2.svg);
+    background-repeat: no-repeat;
+    width: 75px;
+    height: 73px;
+    position: absolute;
+    left: calc((50% - var(--max-width) / 2) / 2 - 37px);
+    top: 20px;
+    z-index: 0;
+    transition: 0.3s;
+    opacity: 0.25;
+}
+footer:has( > .logos-footer:hover) .columns::after,
+footer > .columns:hover::after{
+    opacity: 1;
+}
+
+footer .wp-block-image img{
+    object-fit: contain;
+}
+footer figure.wp-block-gallery{
+	display: grid;
+	margin: 0;
+}
+footer figure.wp-block-gallery.columns-1{
+	grid-template-columns: 1fr;
+}
+footer figure.wp-block-gallery.columns-2{
+	grid-template-columns: 1fr 1fr;
+}
+footer figure.wp-block-gallery.columns-3{
+	grid-template-columns: 1fr 1fr 1fr;
+}
+footer figure.wp-block-gallery.columns-4{
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+footer figure.wp-block-gallery figure.wp-block-image,
+footer .wp-block-gallery img{
+	width: 70px;
+}
+.wp-block-social-link-label{
+    display: none;
+}
+body .site ul.wp-block-social-links{
+    display: flex;
+    flex-direction: row;
+    gap: 8px !important;
+    margin-top: 0;
+}
+.sub-footer-right{
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+}
+.sub-footer-right a,
+.sub-footer-right p{
+    font-size: 14px;
+}
+.sub-footer-right p{
+    margin: 0;
+}
+.wp-block-social-link-anchor{
+    background: white;
+    width: 34px;
+    padding: 2px;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+.wp-social-link{
+    padding: 0;
+    background-color: unset !important;
+}
+.wp-social-link svg{
+    fill: #6C4CDF;
+}
+footer .columns > div{
+    width: fit-content;
+}
+footer p{
+    margin-bottom: 1rem;
+}
+footer li{
+    display: flex;
+    padding-bottom: 1rem;
+}
+footer li, footer a, footer p{
+    font-size: 1rem;
+    margin-top: 0;
+    line-height: 1;
+    text-decoration: unset;
+}
+
+.site footer ul{
+    gap: 0 !important;
+}
+footer .wp-block-cover img{
+    height: calc(100% - var(--spacing-medium));
+}
+
+
+
+/*--------------------------------------------------------------------------------------*\
+| HEADER
+\*--------------------------------------------------------------------------------------*/
+header{
+    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+    margin: auto;
+    width: 100%;
+    margin-top: var(--spacing-small);
+    background: #ffffff94;
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+    padding-right: calc(50% - var(--max-width) / 2);
+    padding-left: calc(50% - var(--max-width) / 2);
+    box-sizing: border-box;
+    margin-bottom: var(--spacing-small);
+}
+
+header ul li a{
+    text-decoration: unset;
+    padding-bottom: 8px;
+}
+header > .menu{
+	display: flex;
+    align-items: center;
+}
+ul.menu{
+    flex-direction: row;
+    gap: var(--spacing-small);
+    margin-top: 0;
+}
+.mobile-nav{
+    display: none;
+}
+.mobile-nav .button{
+    display: flex;
+    gap: 3px;
+    flex-direction: column;
+    height: fit-content;
+}
+.mobile-nav span{
+    background: var(--paars);
+    height: 4px;
+    display: block;
+    width: 20px;
+}
+
+header .site-breadcrumbs{
+    width: 100%;
+}
+header .current-menu-item > a{
+    border-bottom: 2px solid var(--paars);
+}
+footer p a,
+footer ul li a,
+header ul li a{
+    position: relative;
+}
+footer p a::before,
+footer ul li a::before{
+    content: '';
+    width: 0px;
+    height: 2px;
+    background-color: var(--licht-paars);
+    position: absolute;
+    display: block;
+    left: 0;
+    bottom: -4px;
+    transition: 0.3s; 
+}
+header ul li a::before{
+    content: '';
+    width: 0px;
+    height: 2px;
+    background-color: var(--paars);
+    position: absolute;
+    display: block;
+    left: 0;
+    bottom: -2px;
+    transition: 0.3s;
+}
+footer ul{
+    margin-top: 0;
+}
+footer p a:hover::before,
+footer ul:not(.wp-block-social-links) li a:hover::before,
+header ul li a:hover::before{
+    width: 100%;
+}
+footer .wp-block-columns{
+    padding-bottom: 55px;
+}
+
+
+header .nav-home{
+    display: none;
+}
+
+
+/*--------------------------------------------------------------------------------------*\
+| MEDIA QUERIES
+\*--------------------------------------------------------------------------------------*/
+@media screen and (min-width: 1800px) {
+
+}
+@media screen and (max-width: 1800px) {
+
+}
+@media screen and (max-width: 1350px) {
+  header{
+	    flex-wrap: nowrap;
+        padding-left: var(--spacing-small) ;
+        padding-right: var(--spacing-small) ;
+    }
+    footer > div {
+        padding-left: var(--spacing-small) ;
+        padding-right: var(--spacing-small) ;
+    }
+    footer .columns{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    footer > .columns::after {
+        right: -10%;
+        top: 50%;
+        left: unset;
+        opacity: 0.25 !important;
+        width: 500px;
+        height: 500px;
+    }
+}
+@media screen and (max-width: 900px) {
+    header{
+        margin-top: 0;
+        padding-top: var(--spacing-small);
+    }
+    
+    header > .menu{
+        display: none;
+    }
+    header > .mobile-nav{
+		z-index: 10;
+        display: flex;
+    }
+	header ul li a{
+		font-size: 24px;
+	}
+    header .active .custom-logo-link{
+        padding-bottom: 16px;
+    }
+    header .active .custom-logo{
+        width: 120px;
+    }
+    header .active > .menu{
+        width: 100%;
+        height: 100%;
+        padding: 60px;
+        background: var(--beige);
+        height: fit-content;
+    }
+    body.active-mobile{
+        overflow-y: hidden;
+    }
+    header .active > .contact{
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    header .active > .contact .wp-block-buttons {
+        margin-top: 0;
+    }
+	header > .mobile-menu.active{
+        display: flex !important;
+        flex-direction: column;
+        padding: 31px 0 0 0;
+        box-sizing: border-box;
+        width: 100vw;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: calc(100vh + 50px);
+        justify-content: flex-start;
+        align-items: center;
+        background: var(--roze);
+	}
+    header .active > .contact{
+        height: 100%;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+        background-position: center;
+        background-image: url(../../../../_ext/wizarts.wizarts.be/wp-content/uploads/2025/04/DSC05396-1-scaled.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .active .contact .wp-block-buttons{
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        background: #dfd0f3d6;
+        margin: 0;
+    }
+    header .mobile-menu > .menu{
+        clip-path: polygon(100% 0, 100% 0, 100% 0, 100% 0, 100% 0, 100% 0, 100% 0);
+        transition: 3s;
+    }
+    header .mobile-menu.active > .menu{
+        box-sizing: border-box;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 48% 100%, 0 100%, 0 67%, 0 37%);
+        transition: 3s;
+    }
+	header #menu-hoofdmenu-1{
+        box-sizing: border-box;
+		flex-direction: column;
+    	text-align: center;
+	}
+    footer > .columns::after {
+        right: 0;
+        top: 50%;
+        left: unset;
+        opacity: 0.25 !important;
+        width: 90vw;
+        height: 90vw;
+    }
+   
+    footer .wp-block-gallery {
+        grid-template-columns: 1fr 1fr 1fr 1fr !important;
+    }
+    footer ul.wp-block-social-links {
+        justify-content: center;
+    }
+    .content-intro:first-child{
+        padding-bottom: 40px !important;
+    }
+}
+@media screen and (max-width: 600px) {
+    footer .columns{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+  
+    ul.is-style-kolommen{
+        grid-template-columns: 1fr;
+    }
+	.sub-footer-right {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+	
+
+
+}

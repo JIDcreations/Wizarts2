@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wizarts — Hero B · Kinetic Type</title>
+<link rel="icon" href="assets/wizarts-icon.svg" />
+<link rel="stylesheet" href="https://use.typekit.net/ygi5aww.css" />
+<style>
+:root{
+  --paars:#6C4CDF; --paars-donker:#302165; --paars-licht:#AAA7F4;
+  --roze:#DFD0F3; --groen:#71FFD0; --oranje:#FDAC6C;
+  --navy:#000033; --wit:#FFFEFD; --beige:#FFFCF8;
+  --f:'degular','Hanken Grotesk',system-ui,-apple-system,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:var(--f);background:var(--beige);color:var(--navy);overflow:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+
+.stage{position:relative;width:100vw;height:100vh;overflow:hidden;display:grid;place-items:center}
+.bg{position:absolute;inset:0;background:
+  radial-gradient(70% 60% at 50% 18%, #fff, transparent 70%),
+  radial-gradient(50% 50% at 85% 90%, rgba(223,208,243,.6), transparent 70%),
+  radial-gradient(45% 45% at 12% 85%, rgba(113,255,208,.28), transparent 70%);}
+.dots{position:absolute;inset:0;opacity:.5;background-image:radial-gradient(rgba(108,76,223,.16) 1px,transparent 1.4px);background-size:40px 40px;
+  -webkit-mask-image:radial-gradient(70% 70% at 50% 45%,#000,transparent);mask-image:radial-gradient(70% 70% at 50% 45%,#000,transparent)}
+canvas#dust{position:absolute;inset:0;pointer-events:none}
+
+/* floating wireframe accents */
+.geo{position:absolute;pointer-events:none;color:var(--paars);opacity:.5}
+.geo.x{top:18%;left:12%;animation:spin 22s linear infinite}
+.geo.ring{bottom:16%;right:13%;width:120px;height:120px;border:1.5px solid var(--paars);border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,rgba(108,76,223,.18),transparent 60%);animation:float 7s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+
+/* nav */
+/* ── nav base (grid, restyled per .v* variant) ── */
+.nav{position:absolute;inset:0 0 auto 0;z-index:20;display:grid;align-items:center;
+  grid-template-columns:auto 1fr auto;grid-template-areas:"brand links cta";gap:24px;
+  padding:22px clamp(24px,4vw,56px);transition:background .4s,border-color .4s,padding .4s,box-shadow .4s}
+.brand{grid-area:brand;display:inline-flex}
+.nav img{height:26px;display:block}
+.nav-links{grid-area:links;justify-self:end;display:flex;gap:30px;align-items:center;font-weight:500;font-size:.95rem}
+.nav-links a{position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-5px;height:1.5px;width:100%;background:var(--paars);transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.nav-links a:hover::after{transform:scaleX(1)}
+/* expertise dropdown (Stijn-style mega panel) */
+.has-drop{position:relative;display:inline-flex;align-items:center}
+.trigger{display:inline-flex;align-items:center;gap:6px;background:none;border:0;font:inherit;color:inherit;cursor:pointer}
+.drop{position:absolute;left:50%;top:100%;padding-top:16px;transform:translateX(-50%) translateY(6px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s,transform .25s,visibility .25s;z-index:60}
+.has-drop:hover .drop,.has-drop:focus-within .drop{opacity:1;visibility:visible;transform:translateX(-50%);pointer-events:auto}
+.drop-inner{width:23rem;background:#fff;border:1px solid rgba(0,0,51,.1);border-radius:18px;box-shadow:0 26px 60px -22px rgba(48,33,101,.5);padding:8px}
+.drop a{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:12px;transition:background .2s}
+.drop a:hover{background:rgba(108,76,223,.08)}
+.drop a::after{display:none!important}
+.drop .ic{color:var(--paars);flex:none;margin-top:1px}
+.drop .t{font-weight:600;color:#1A1430;font-size:.95rem;display:block}
+.drop .d{color:rgba(0,0,51,.55);font-size:.78rem;line-height:1.3;display:block;margin-top:2px}
+.drop .sep{height:1px;background:rgba(0,0,51,.1);margin:6px 8px}
+.chev{transition:transform .25s}
+.has-drop:hover .chev,.has-drop:focus-within .chev{transform:rotate(180deg)}
+.nav-cta{grid-area:cta;justify-self:end;display:inline-flex;align-items:center;gap:.4rem;background:var(--paars);color:#fff;padding:.7rem 1.2rem;border-radius:9999px;font-weight:600;font-size:.92rem;border:1px solid transparent;transition:transform .3s,background .3s,color .3s,border-color .3s}
+.nav-cta:hover{transform:translateY(-2px)}
+.nav-cta svg{transition:transform .3s}
+.nav-cta:hover svg{transform:translateX(3px)}
+/* dropdown panel never inherits the uppercase/letter-spacing of variant 4 */
+.drop, .drop *{text-transform:none;letter-spacing:normal}
+
+/* ── V1 · Minimaal: airy, lighter weight, text CTA ── */
+.nav.v1 .nav-links{gap:40px;font-weight:400}
+.nav.v1 .nav-cta{background:transparent;color:var(--paars);padding:.5rem 0}
+/* ── V2 · Gecentreerd: logo in the middle ── */
+.nav.v2{grid-template-columns:1fr auto 1fr;grid-template-areas:"links brand cta"}
+.nav.v2 .nav-links{justify-self:start}
+.nav.v2 .brand{justify-self:center}
+.nav.v2 .nav-cta{background:transparent;color:var(--paars);padding:.5rem 0}
+/* ── V3 · Capsule: floating translucent pill ── */
+.nav.v3{inset:auto;top:18px;left:50%;transform:translateX(-50%);width:min(94%,1060px);
+  background:rgba(255,255,255,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(0,0,51,.08);border-radius:9999px;padding:.7rem 1.4rem;
+  box-shadow:0 16px 44px -22px rgba(48,33,101,.4)}
+.nav.v3 .nav-links{justify-self:center}
+.nav.v3 .nav-cta{padding:.6rem 1.1rem}
+/* ── V4 · Lijn: hairline rule, uppercase tracked links ── */
+.nav.v4{border-bottom:1px solid rgba(0,0,51,.10);background:rgba(255,252,248,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.nav.v4 .nav-links{text-transform:uppercase;letter-spacing:.13em;font-size:.74rem;font-weight:600;gap:26px}
+.nav.v4 .nav-cta{background:transparent;color:var(--paars);border-color:rgba(108,76,223,.4)}
+@media(max-width:860px){.nav-links{display:none}.nav.v2{grid-template-columns:auto 1fr auto;grid-template-areas:"brand links cta"}}
+
+/* keep kinetic's replay control clear of the nav-version switcher */
+.replay{left:auto!important;right:24px!important;transform:none!important}
+
+/* nav-version switcher (preview tool) */
+#navswitch{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:200;display:flex;align-items:center;gap:6px;
+  padding:8px 10px;border-radius:9999px;background:rgba(16,11,32,.85);backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.14);box-shadow:0 16px 44px -14px rgba(0,0,0,.6)}
+#navswitch .ns-cap{color:rgba(255,255,255,.55);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;padding:0 8px 0 4px;white-space:nowrap}
+#navswitch button{font:inherit;font-weight:600;font-size:.82rem;cursor:pointer;border:0;border-radius:9999px;padding:.55rem .85rem;color:rgba(255,255,255,.82);background:transparent;transition:background .25s,color .25s;white-space:nowrap}
+#navswitch button:hover{background:rgba(255,255,255,.1)}
+#navswitch button.on{background:#6C4CDF;color:#fff}
+@media(max-width:680px){#navswitch .ns-cap{display:none}}
+
+/* content */
+.wrap{position:relative;z-index:4;text-align:center;padding:0 6vw;max-width:1180px}
+.eyebrow{font-weight:600;font-size:clamp(.7rem,1.1vw,.82rem);letter-spacing:.3em;text-transform:uppercase;color:var(--paars);margin-bottom:1.6rem;
+  opacity:0;transform:translateY(10px);transition:.7s .1s}
+.eyebrow.in{opacity:1;transform:none}
+
+h1{font-weight:600;letter-spacing:-.03em;line-height:.92;font-size:clamp(2.8rem,9vw,8rem)}
+.line{display:block;overflow:hidden}
+.word{display:inline-block;white-space:nowrap}
+.ch{display:inline-block;transform:translateY(105%) rotate(8deg);opacity:0;will-change:transform}
+.ch.in{transform:none;opacity:1;transition:transform .7s cubic-bezier(.16,1,.3,1),opacity .5s}
+
+/* the accent word literally grows + breathes */
+.grow{color:var(--paars);position:relative;transform-origin:left center}
+.grow.in{animation:breathe 4.5s ease-in-out 1s infinite}
+@keyframes breathe{0%,100%{letter-spacing:-.01em}50%{letter-spacing:.06em}}
+.grow .ch.in{transition:transform .9s cubic-bezier(.16,1,.3,1),opacity .6s}
+.grow::after{content:"";position:absolute;left:0;right:0;bottom:-.06em;height:.08em;background:var(--oranje);border-radius:3px;
+  transform:scaleX(0);transform-origin:left;transition:transform .8s cubic-bezier(.16,1,.3,1) .9s}
+.grow.in::after{transform:scaleX(1)}
+
+.sub{margin:2.2rem auto 0;max-width:36rem;font-size:clamp(1.02rem,1.6vw,1.25rem);line-height:1.5;color:rgba(0,0,51,.66);min-height:3.2em}
+.sub .caret{display:inline-block;width:.6ch;background:var(--paars);margin-left:1px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+.actions{margin-top:2.4rem;display:flex;gap:14px;justify-content:center;opacity:0;transform:translateY(12px);transition:.7s}
+.actions.in{opacity:1;transform:none}
+.btn{font:600 1rem/1 var(--f);padding:1.05rem 1.7rem;border-radius:9999px;display:inline-flex;align-items:center;gap:.6rem;transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s}
+.btn.primary{background:var(--paars);color:#fff;box-shadow:0 12px 30px -8px rgba(108,76,223,.6)}
+.btn.primary:hover{transform:translateY(-3px)}
+.btn.ghost{border:1px solid rgba(108,76,223,.4);color:var(--paars)}
+.btn.ghost:hover{transform:translateY(-3px);background:rgba(108,76,223,.08)}
+
+.replay{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:8;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(0,0,51,.5);cursor:pointer;display:flex;gap:.5rem;align-items:center}
+.replay:hover{color:var(--paars)}
+@media (prefers-reduced-motion:reduce){.ch{transform:none;opacity:1}.grow.in{animation:none}}
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <div class="bg"></div><div class="dots"></div>
+  <canvas id="dust"></canvas>
+  <svg class="geo x" width="70" height="70" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M16 16 64 64M64 16 16 64"/></svg>
+  <div class="geo ring"></div>
+
+  <header class="nav v1" id="hero-nav">
+    <a class="brand" href="#" aria-label="Wizarts"><img src="assets/wizarts-logo.svg" alt="Wizarts"></a>
+    <nav class="nav-links">
+      <div class="has-drop">
+        <button class="trigger" aria-haspopup="true" aria-expanded="false">Expertise<svg class="chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="drop"><div class="drop-inner">
+          <a href="../expertise/webdesign/" target="_top"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M3 8h18M8 21h8"/></svg></span><span><span class="t">Webdesign</span><span class="d">AI-gedreven sites, e-commerce &amp; hosting</span></span></a>
+          <a href="../expertise/branding/" target="_top"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4z"/></svg></span><span><span class="t">Branding</span><span class="d">Logo, huisstijl &amp; grafische vormgeving</span></span></a>
+          <a href="../expertise/marketing/" target="_top"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 18l5-5 3 3 7-7"/><path d="M16 9h4v4"/></svg></span><span><span class="t">Marketing</span><span class="d">SEO, advertising &amp; social</span></span></a>
+          <a href="../expertise/print/" target="_top"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 9V3h12v6M6 18H4v-5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5h-2"/><rect x="7" y="14" width="10" height="7" rx="1"/></svg></span><span><span class="t">Print</span><span class="d">Drukwerk, grootformaat &amp; buitenreclame</span></span></a>
+          <div class="sep"></div>
+          <a href="../wizarts-pro/" target="_top"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/><path d="M11 7h4a2 2 0 0 1 2 2v4"/></svg></span><span><span class="t">Wizarts&nbsp;Pro</span><span class="d">White-label partner voor agencies</span></span></a>
+        </div></div>
+      </div>
+      <a href="../alle-projecten/" target="_top">Werk</a>
+      <a href="../over-ons/" target="_top">Over ons</a>
+    </nav>
+    <a class="nav-cta" href="#">Contact<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </header>
+
+  <div class="wrap">
+    <p class="eyebrow" id="eyebrow">Creatief bureau · AI &amp; vakmanschap</p>
+    <h1 id="h1">
+      <span class="line"><span class="word" data-w="Gedreven"></span> <span class="word" data-w="door"></span> <span class="word" data-w="AI,"></span></span>
+      <span class="line"><span class="word" data-w="gemaakt"></span> <span class="word" data-w="door"></span></span>
+      <span class="line"><span class="word grow" data-w="mensen."></span></span>
+    </h1>
+    <p class="sub" id="sub"></p>
+    <div class="actions" id="actions">
+      <a href="#" class="btn primary">Start je project
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="#" class="btn ghost">Bekijk ons werk</a>
+    </div>
+  </div>
+
+  <div class="replay" id="replay">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v4h4"/></svg>
+    opnieuw opbouwen
+  </div>
+</div>
+
+<script>
+const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+const SUBTEXT = "Wat nu als je de snelheid kreeg van AI, maar de passie van mensen? Bij Wizarts bundelen we het beste van beide werelden om jouw zaak te laten groeien.";
+
+// build letters from data-w
+function buildWords(){
+  document.querySelectorAll('.word').forEach(w=>{
+    w.innerHTML='';
+    [...w.dataset.w].forEach(c=>{
+      const s=document.createElement('span'); s.className='ch'; s.textContent=c; w.appendChild(s);
+    });
+  });
+}
+let typeTimer;
+function typeSub(){
+  const el=document.getElementById('sub'); el.innerHTML='';
+  const caret=document.createElement('span'); caret.className='caret'; caret.innerHTML='&nbsp;'; el.appendChild(caret);
+  let i=0; clearInterval(typeTimer);
+  typeTimer=setInterval(()=>{
+    if(i>=SUBTEXT.length){clearInterval(typeTimer);setTimeout(()=>caret.remove(),900);return;}
+    caret.insertAdjacentText('beforebegin',SUBTEXT[i++]);
+  },22);
+}
+function play(){
+  buildWords();
+  document.getElementById('eyebrow').classList.remove('in');
+  document.getElementById('actions').classList.remove('in');
+  document.querySelector('.grow').classList.remove('in');
+  const chars=[...document.querySelectorAll('.ch')];
+  if(reduce){chars.forEach(c=>c.classList.add('in'));document.getElementById('eyebrow').classList.add('in');document.querySelector('.grow').classList.add('in');document.getElementById('sub').textContent=SUBTEXT;document.getElementById('actions').classList.add('in');return;}
+  setTimeout(()=>document.getElementById('eyebrow').classList.add('in'),120);
+  chars.forEach((c,i)=>setTimeout(()=>c.classList.add('in'), 380 + i*26));
+  const total=380+chars.length*26;
+  setTimeout(()=>document.querySelector('.grow').classList.add('in'), total-200);
+  setTimeout(typeSub, total+120);
+  setTimeout(()=>document.getElementById('actions').classList.add('in'), total+260);
+}
+document.getElementById('replay').addEventListener('click',play);
+document.fonts && document.fonts.ready.then(play) || play();
+
+/* ── ambient dust particles drifting upward (the "assembling" feel) ── */
+const cv=document.getElementById('dust'),cx=cv.getContext('2d');
+let W,H,parts=[];
+function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;
+  parts=Array.from({length:reduce?0:70},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.8+.4,
+    s:Math.random()*.25+.05,a:Math.random()*.4+.1,g:Math.random()>.5}));}
+resize();addEventListener('resize',resize);
+(function loop(){cx.clearRect(0,0,W,H);
+  for(const p of parts){p.y-=p.s;if(p.y<-4){p.y=H+4;p.x=Math.random()*W;}
+    cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fillStyle=p.g?`rgba(113,255,208,${p.a})`:`rgba(108,76,223,${p.a})`;cx.fill();}
+  requestAnimationFrame(loop);})();
+</script>
+<nav id="navswitch" aria-label="Nav-versie kiezen">
+  <span class="ns-cap">Nav-versie</span>
+  <button data-v="v1">1 · Minimaal</button>
+  <button data-v="v2">2 · Gecentreerd</button>
+  <button data-v="v3">3 · Capsule</button>
+  <button data-v="v4">4 · Lijn</button>
+</nav>
+<script>
+(function(){
+  var hn=document.getElementById('hero-nav'), sw=document.getElementById('navswitch');
+  function setNav(v){ hn.className='nav '+v;
+    sw.querySelectorAll('button').forEach(function(b){b.classList.toggle('on',b.dataset.v===v);});
+    try{localStorage.setItem('wzNav',v);}catch(e){} }
+  sw.addEventListener('click',function(e){var b=e.target.closest('button'); if(b) setNav(b.dataset.v);});
+  var q=(location.search.match(/nav=(v[1-4])/)||[])[1];
+  var s; try{s=localStorage.getItem('wzNav');}catch(e){}
+  setNav(q||s||'v1');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="708" height="708" viewBox="0 0 708 708">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_2082" data-name="Rectangle 2082" width="708" height="708" rx="40" transform="translate(935 2538)" fill="#dfd0f3"/>
+    </clipPath>
+  </defs>
+  <g id="kader_sterren_lila" data-name="kader sterren lila" transform="translate(-935 -2538)">
+    <path id="Path_1188" data-name="Path 1188" d="M40,0H668a40,40,0,0,1,40,40V668a40,40,0,0,1-40,40H40A40,40,0,0,1,0,668V40A40,40,0,0,1,40,0Z" transform="translate(935 2538)" fill="#6c4cdf"/>
+    <g id="Mask_Group_26" data-name="Mask Group 26" clip-path="url(#clip-path)">
+      <g id="Group_2650" data-name="Group 2650" transform="translate(411.512 -155.129)">
+        <path id="Path_1186" data-name="Path 1186" d="M181.27,0V132.176L58.918,66.4,0,161.4l120.681,64.87L0,291.141l58.917,95L181.27,320.37V452.546H295.746V320.37L418.1,386.142l58.9-95-120.685-64.87L477,161.4l-58.9-95L295.746,132.176V0Z" transform="translate(944.488 2558.391)" fill="#aaa7f4"/>
+        <path id="Path_1189" data-name="Path 1189" d="M27.362,0V19.951L8.893,10.023,0,24.363l18.216,9.792L0,43.946l8.893,14.34,18.468-9.928V68.309H44.641V48.358l18.468,9.928L72,43.946,53.783,34.154,72,24.363,63.109,10.023,44.641,19.951V0Z" transform="translate(574.488 2750.51)" fill="#aaa7f4"/>
+        <path id="Path_1190" data-name="Path 1190" d="M55.673,0V40.595L18.1,20.395,0,49.571,37.065,69.494,0,89.418l18.1,29.177,37.578-20.2V138.99H90.832V98.395l37.578,20.2L146.5,89.418,109.434,69.494,146.5,49.571,128.41,20.395l-37.578,20.2V0Z" transform="translate(1015.488 3191.829)" fill="#aaa7f4"/>
+      </g>
+    </g>
+  </g>
+</svg>
