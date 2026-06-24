@@ -1488,15 +1488,9 @@ html.wz-dark .menu-hoofdmenu-container a{color:#ECEAF8}
 /* footer base */
 html.wz-dark footer{background:#0c0920}
 
-/* custom "Expertise" section — flip the light (print) card to dark */
-html.wz-dark .wz-x-title{color:#ECEAF8}
-html.wz-dark .wz-x-title span{color:#AAA7F4}
-html.wz-dark .wz-card.hand{background:#13102a;border-color:rgba(170,167,244,.14);color:#ECEAF8;
-  box-shadow:0 34px 70px -38px rgba(0,0,0,.6)}
-html.wz-dark .wz-card.hand .wz-card-body>p{color:rgba(236,234,248,.7)}
-html.wz-dark .wz-card.hand .wz-list li{color:rgba(236,234,248,.86)}
-html.wz-dark .wz-card.hand .wz-ic{background:rgba(170,167,244,.14);color:#AAA7F4}
-html.wz-dark .wz-card.hand .wz-card-link{color:#AAA7F4}
+/* The injected editorial sections (Expertise, Probleem→oplossing) live in the
+   main content zone, which stays light even in dark mode — so they are styled
+   light-only in their own blocks; no dark overrides needed here. */
 </style>
 <script>
 (function(){
@@ -1520,91 +1514,77 @@ html.wz-dark .wz-card.hand .wz-card-link{color:#AAA7F4}
 })();
 </script>
 
-<!-- ════════ WIZARTS — Kinetic-vibe homepage iteration ════════ -->
+<!-- ════════ WIZARTS — Expertise: "two worlds" editorial split (no cards) ════════ -->
 <style id="wz-home-vibe">
 :root{--wz-paars:#6C4CDF;--wz-paars-licht:#AAA7F4;--wz-groen:#71FFD0;--wz-oranje:#FDAC6C;--wz-navy:#000033;--wz-beige:#FFFCF8}
-/* ===== Expertise section (two-pillar) — contained, no global overrides ===== */
-.wz-expertise{max-width:none;background:transparent;padding:clamp(56px,7vw,120px) 0;position:relative;overflow:hidden;
+.wz-expertise{background:transparent;padding:clamp(64px,8vw,130px) 0;position:relative;overflow:hidden;
   font-family:'degular','Hanken Grotesk',system-ui,-apple-system,sans-serif}
-.wz-x-inner{max-width:1180px;margin:0 auto;padding:0 clamp(24px,4vw,56px);box-sizing:border-box;width:100%}
-.wz-eyebrow{font-weight:600;font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;color:var(--wz-paars);margin:0 0 1rem}
-.wz-x-title{font-weight:600;letter-spacing:-.025em;line-height:1.02;font-size:clamp(2rem,4.4vw,3.4rem);color:var(--wz-navy);max-width:20ch;margin:0 0 clamp(34px,4vw,58px)}
-.wz-x-title span{color:var(--wz-paars)}
-.wz-x-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2vw,26px)}
-@media(max-width:820px){.wz-x-grid{grid-template-columns:1fr}}
-.wz-card{position:relative;border-radius:28px;padding:clamp(28px,3vw,46px);overflow:hidden;display:flex;
-  transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s}
-.wz-card:hover{transform:translateY(-6px)}
-.wz-card-body{position:relative;z-index:2;display:flex;flex-direction:column;flex:1}
-.wz-num{position:absolute;top:clamp(24px,3vw,40px);right:clamp(26px,3vw,44px);z-index:3;font-size:.82rem;font-weight:600;opacity:.55}
-.wz-ic{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;margin-bottom:1.5rem}
-.wz-card h3{font-weight:600;font-size:clamp(1.5rem,2.4vw,2.05rem);letter-spacing:-.02em;margin:0 0 .85rem;line-height:1.04}
-.wz-card .wz-card-body>p{font-size:1.02rem;line-height:1.55;margin:0 0 1.7rem;max-width:36ch}
-.wz-list{list-style:none;margin:0 0 2rem;padding:0;display:flex;flex-direction:column;gap:.75rem}
-.wz-list li{display:flex;align-items:center;gap:.65rem;font-size:.97rem}
-.wz-list svg{flex:none;width:18px;height:18px}
-.wz-card-link{margin-top:auto;display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:.98rem;align-self:flex-start}
-.wz-card-link svg{transition:transform .3s}.wz-card:hover .wz-card-link svg{transform:translateX(4px)}
-.wz-tex{position:absolute;inset:0;z-index:0;pointer-events:none}
-/* screen / digital card — dark */
-.wz-card.screen{background:radial-gradient(120% 100% at 12% 0,#241a47 0,#160f2c 55%,#100b22 100%);color:#fff;box-shadow:0 34px 70px -34px rgba(20,14,40,.7)}
-.wz-card.screen .wz-tex{opacity:.55;background-image:linear-gradient(rgba(170,167,244,.13) 1px,transparent 1px),linear-gradient(90deg,rgba(170,167,244,.13) 1px,transparent 1px);background-size:42px 42px;-webkit-mask-image:radial-gradient(75% 70% at 82% 8%,#000,transparent);mask-image:radial-gradient(75% 70% at 82% 8%,#000,transparent)}
-.wz-card.screen .wz-ic{background:rgba(170,167,244,.16);color:var(--wz-groen)}
-.wz-card.screen .wz-card-body>p{color:rgba(255,255,255,.72)}
-.wz-card.screen .wz-list li{color:rgba(255,255,255,.86)} .wz-card.screen .wz-list svg{color:var(--wz-groen)}
-.wz-card.screen .wz-card-link{color:var(--wz-groen)}
-/* hand / print card — warm light */
-.wz-card.hand{background:#fff;border:1px solid rgba(0,0,51,.08);color:var(--wz-navy);box-shadow:0 34px 70px -38px rgba(48,33,101,.32)}
-.wz-card.hand .wz-tex{opacity:.6;background-image:radial-gradient(rgba(253,172,108,.55) 1.1px,transparent 1.3px);background-size:16px 16px;-webkit-mask-image:radial-gradient(70% 70% at 88% 92%,#000,transparent);mask-image:radial-gradient(70% 70% at 88% 92%,#000,transparent)}
-.wz-card.hand .wz-ic{background:rgba(108,76,223,.1);color:var(--wz-paars)}
-.wz-card.hand .wz-card-body>p{color:rgba(0,0,51,.66)}
-.wz-card.hand .wz-list li{color:rgba(0,0,51,.8)} .wz-card.hand .wz-list svg{color:var(--wz-oranje)}
-.wz-card.hand .wz-card-link{color:var(--wz-paars)}
-/* ambient floating element echoing the hero */
-.wz-float{position:absolute;right:3%;top:7%;width:clamp(90px,9vw,140px);opacity:.85;pointer-events:none;animation:wz-fl 8s ease-in-out infinite}
-@keyframes wz-fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
-@media(max-width:980px){.wz-float{display:none}}
+.wz-x-inner{max-width:1180px;margin:0 auto;padding:0 clamp(24px,4vw,56px);box-sizing:border-box;width:100%;position:relative;z-index:2}
+.wz-eyebrow{font-weight:700;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--wz-paars);margin:0 0 1rem}
+.wz-x-title{font-weight:700;letter-spacing:-.03em;line-height:1.0;font-size:clamp(2.1rem,5vw,3.7rem);color:var(--wz-navy);max-width:18ch;margin:0 0 clamp(40px,5vw,68px)}
+.wz-x-title span{color:var(--wz-paars);position:relative;white-space:nowrap}
+.wz-x-title span::after{content:"";position:absolute;left:0;right:0;bottom:.04em;height:.07em;border-radius:3px;background:var(--wz-oranje)}
+/* editorial split — two worlds separated by a hairline, not boxes */
+.wz-worlds{display:grid;grid-template-columns:1fr 1px 1fr;gap:clamp(30px,5vw,70px);align-items:stretch}
+.wz-vline{align-self:stretch;width:1px;background:linear-gradient(180deg,rgba(48,33,101,.18),rgba(48,33,101,.02))}
+@media(max-width:820px){.wz-worlds{grid-template-columns:1fr;gap:clamp(44px,9vw,60px)}.wz-vline{display:none}}
+.wz-world{--acc:#6C4CDF;--dot:#19B07F;display:flex;flex-direction:column}
+.wz-world--print{--acc:#C9701E;--dot:#D07B26}
+.wz-world-lab{display:inline-flex;align-items:center;gap:.55rem;font-weight:700;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--acc);margin:0 0 1.05rem}
+.wz-world-lab i{width:8px;height:8px;border-radius:9999px;background:var(--dot)}
+.wz-world h3{font-weight:700;font-size:clamp(1.5rem,2.6vw,2.1rem);letter-spacing:-.02em;line-height:1.05;margin:0 0 .9rem;color:var(--wz-navy)}
+.wz-world>p{font-size:1.02rem;line-height:1.6;margin:0 0 1.7rem;color:rgba(0,0,51,.62);max-width:42ch}
+.wz-arrowlist{list-style:none;margin:0 0 1.9rem;padding:0;display:flex;flex-direction:column}
+.wz-arrowlist li{position:relative;padding:.72rem 0 .72rem 1.6rem;font-size:1rem;line-height:1.45;color:rgba(0,0,51,.82);border-top:1px solid rgba(48,33,101,.09)}
+.wz-arrowlist li:first-child{border-top:none}
+.wz-arrowlist li::before{content:"";position:absolute;left:1px;top:1.04em;width:.62rem;height:.62rem;border-right:2px solid var(--acc);border-top:2px solid var(--acc);transform:rotate(45deg);transition:transform .3s}
+.wz-arrowlist li:hover::before{transform:rotate(45deg) translate(2px,-2px)}
+.wz-textlink{margin-top:auto;position:relative;align-self:flex-start;display:inline-flex;align-items:center;gap:.5rem;font-weight:700;font-size:.98rem;color:var(--acc);text-decoration:none;padding-bottom:3px}
+.wz-textlink::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.wz-textlink:hover::after{transform:scaleX(1)}
+.wz-textlink svg{transition:transform .3s}.wz-textlink:hover svg{transform:translateX(4px)}
+/* ambient floating elements (echo the inspo's floating layer) */
+.wz-float{position:absolute;pointer-events:none;z-index:0;opacity:.9;animation:wz-fl 8s ease-in-out infinite}
+.wz-float-a{right:-2%;top:2%;width:clamp(120px,14vw,210px)}
+.wz-float-b{left:-3%;bottom:4%;width:clamp(64px,7vw,104px);animation-duration:11s;animation-delay:-3s}
+@keyframes wz-fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+@media(max-width:980px){.wz-float-a{opacity:.45}.wz-float-b{display:none}}
 @media(prefers-reduced-motion:reduce){.wz-float{animation:none}}
 </style>
 
 <section class="wz-expertise alignfull" id="wz-expertise" aria-labelledby="wz-x-h">
-  <img class="wz-float" src="hero-concepts/assets/elements/sphere.gif" alt="" aria-hidden="true">
+  <img class="wz-float wz-float-a" src="hero-concepts/assets/elements/sphere.gif" alt="" aria-hidden="true">
+  <img class="wz-float wz-float-b" src="hero-concepts/assets/elements/x-orange.gif" alt="" aria-hidden="true">
   <div class="wz-x-inner">
     <p class="wz-eyebrow">Expertise</p>
     <h2 class="wz-x-title" id="wz-x-h">Twee werelden. Eén <span>naadloze</span> merkervaring.</h2>
-    <div class="wz-x-grid">
+    <div class="wz-worlds">
 
-      <article class="wz-card screen">
-        <div class="wz-tex"></div>
-        <div class="wz-num">01</div>
-        <div class="wz-card-body">
-          <div class="wz-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4z"/><path d="M19 14l.6 1.6L21.5 16l-1.9.6L19 18.5l-.6-1.9L16.5 16z"/></svg></div>
-          <h3>AI Digital Experts</h3>
-          <p>Razendsnelle, AI-gedreven websites op een fundament van ijzersterke techniek. De tijd die AI wint, investeren wij in conversie, UX en gemoedsrust.</p>
-          <ul class="wz-list">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L20 7"/></svg>AI-driven webdesign &amp; e-commerce</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L20 7"/></svg>Hosting &amp; digitale zekerheid</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L20 7"/></svg>SEO, advertising &amp; digitale groei</li>
-          </ul>
-          <a class="wz-card-link" href="#">Ontdek digitaal<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-      </article>
+      <div class="wz-world wz-world--digital">
+        <span class="wz-world-lab"><i></i>Digitaal</span>
+        <h3>AI Digital Experts</h3>
+        <p>Razendsnelle, AI-gedreven websites op een fundament van ijzersterke techniek. De tijd die AI wint, investeren wij in conversie, UX en gemoedsrust.</p>
+        <ul class="wz-arrowlist">
+          <li>AI-driven webdesign &amp; e-commerce</li>
+          <li>Hosting &amp; digitale zekerheid</li>
+          <li>SEO, advertising &amp; digitale groei</li>
+        </ul>
+        <a class="wz-textlink" href="#">Ontdek digitaal<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
 
-      <article class="wz-card hand">
-        <div class="wz-tex"></div>
-        <div class="wz-num">02</div>
-        <div class="wz-card-body">
-          <div class="wz-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 9V3h12v6M6 18H4v-5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5h-2"/><rect x="7" y="14" width="10" height="7" rx="1"/></svg></div>
-          <h3>Premium Print Experts</h3>
-          <p>In een scherm-vermoeide wereld is tastbaarheid het ultieme luxeproduct. Wij vertalen je merk naar drukwerk dat je voelt — van naamkaartje tot gevel.</p>
-          <ul class="wz-list">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L20 7"/></svg>Tactiele branding &amp; drukwerk</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L20 7"/></svg>Premium verpakkingen</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L20 7"/></svg>Grootformaat &amp; buitenreclame</li>
-          </ul>
-          <a class="wz-card-link" href="#">Ontdek print<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-      </article>
+      <div class="wz-vline" aria-hidden="true"></div>
+
+      <div class="wz-world wz-world--print">
+        <span class="wz-world-lab"><i></i>Print</span>
+        <h3>Premium Print Experts</h3>
+        <p>In een scherm-vermoeide wereld is tastbaarheid het ultieme luxeproduct. Wij vertalen je merk naar drukwerk dat je voelt — van naamkaartje tot gevel.</p>
+        <ul class="wz-arrowlist">
+          <li>Tactiele branding &amp; drukwerk</li>
+          <li>Premium verpakkingen</li>
+          <li>Grootformaat &amp; buitenreclame</li>
+        </ul>
+        <a class="wz-textlink" href="#">Ontdek print<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
 
     </div>
   </div>
@@ -1615,6 +1595,168 @@ html.wz-dark .wz-card.hand .wz-card-link{color:#AAA7F4}
   var sec=document.getElementById('wz-expertise');
   var hero=document.querySelector('.content-intro');
   if(sec&&hero&&hero.parentNode){ hero.parentNode.insertBefore(sec, hero.nextSibling); }
+})();
+</script>
+
+<!-- ════════ WIZARTS — Probleem → Oplossing (spell-sweep transformation) ════════ -->
+<style id="wz-flow-style">
+.wz-spell{font-family:'degular','Hanken Grotesk',system-ui,-apple-system,sans-serif;padding:clamp(56px,7vw,120px) 0;position:relative;overflow:hidden}
+/* same container as the Expertise section so left edges line up with the page margins */
+.wz-spell-in{max-width:1180px;margin:0 auto;padding:0 clamp(24px,4vw,56px);box-sizing:border-box;width:100%;position:relative;z-index:2}
+.wz-spell .wz-eyebrow{font-weight:700;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--wz-paars);margin:0 0 1rem}
+.wz-spell h2{font-weight:700;letter-spacing:-.03em;line-height:1.06;font-size:clamp(2rem,4.2vw,3.05rem);color:var(--wz-navy);margin:0 0 1.5rem;max-width:880px}
+/* readable measure for the narrative content, but left-aligned to the margin */
+.wz-spell-list,.wz-spell-foot{max-width:820px}
+.wz-spell h2 em{font-style:normal;color:var(--wz-paars);position:relative;white-space:nowrap}
+.wz-spell h2 em::after{content:"";position:absolute;left:0;right:0;bottom:.03em;height:.07em;border-radius:3px;background:var(--wz-oranje)}
+/* personal opener — Stijn voices the struggle */
+.wz-spell-intro{display:flex;gap:1.1rem;align-items:center;margin:0 0 clamp(40px,5vw,66px);max-width:48ch}
+.wz-spell-intro img{width:62px;height:62px;border-radius:9999px;object-fit:cover;object-position:center top;flex:none;box-shadow:0 12px 26px -14px rgba(48,33,101,.5)}
+.wz-spell-intro p{font-size:clamp(1.02rem,1.5vw,1.18rem);line-height:1.5;color:rgba(0,0,51,.72);margin:0;font-style:italic}
+.wz-spell-intro p b{display:block;font-style:normal;font-weight:700;font-size:.82rem;color:var(--wz-paars);margin-top:.45rem;letter-spacing:.02em}
+/* the spell rail — a wand travels down and casts each line */
+.wz-spell-list{list-style:none;margin:0;padding:0;position:relative}
+.wz-spell-list::before{content:"";position:absolute;left:13px;top:10px;bottom:10px;width:2px;background:rgba(48,33,101,.13);border-radius:2px}
+.wz-spell-fill{position:absolute;left:13px;top:10px;width:2px;height:0;background:linear-gradient(180deg,var(--wz-paars),var(--wz-groen));border-radius:2px;z-index:1}
+.wz-spell-wand{position:absolute;left:14px;top:10px;width:30px;height:30px;margin:-15px 0 0 -15px;z-index:3;color:var(--wz-paars);opacity:0;transition:opacity .4s;filter:drop-shadow(0 4px 10px rgba(108,76,223,.5))}
+.wz-spell.js .wz-spell-wand{opacity:1}
+.wz-spell-wand svg{width:100%;height:100%}
+.spell-row{position:relative;padding:clamp(16px,2vw,22px) 0 clamp(16px,2vw,22px) 52px;border-top:1px solid rgba(48,33,101,.08)}
+.spell-row:first-child{border-top:none}
+.spell-node{position:absolute;left:5px;top:calc(clamp(16px,2vw,22px) + .55em);width:18px;height:18px;border-radius:9999px;background:var(--wz-beige);border:2px solid rgba(48,33,101,.22);z-index:2;display:grid;place-items:center;transition:border-color .4s,background .4s,box-shadow .4s}
+.spell-node::after{content:"";width:7px;height:7px;border-radius:9999px;background:#fff;opacity:0;transform:scale(.4);transition:opacity .4s,transform .4s}
+.spell-row.cast .spell-node{border-color:var(--wz-paars);background:var(--wz-paars);box-shadow:0 0 0 6px rgba(108,76,223,.12)}
+.spell-row.cast .spell-node::after{opacity:1;transform:none}
+.spell-problem{display:flex;gap:.6rem;align-items:baseline;font-size:clamp(1rem,1.4vw,1.12rem);line-height:1.4;color:rgba(0,0,51,.5);transition:color .5s}
+.spell-problem .x{flex:none;font-weight:700;color:rgba(0,0,51,.3);transition:color .5s}
+.spell-row.cast .spell-problem{color:rgba(0,0,51,.34);text-decoration:line-through;text-decoration-color:rgba(0,0,51,.25)}
+.spell-solution{display:flex;gap:.65rem;align-items:center;font-size:clamp(1.18rem,2vw,1.5rem);font-weight:600;letter-spacing:-.01em;color:var(--wz-navy);margin-top:.55rem;line-height:1.2}
+.spell-solution .mk{flex:none;width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:rgba(108,76,223,.1);color:var(--wz-paars)}
+.spell-solution .mk svg{width:16px;height:16px}
+/* JS-on: solutions hidden until the wand casts the row */
+.wz-spell.js .spell-solution{opacity:0;transform:translateY(10px);max-height:0;overflow:hidden;margin-top:0;transition:opacity .55s cubic-bezier(.16,1,.3,1),transform .55s cubic-bezier(.16,1,.3,1),max-height .55s,margin-top .55s}
+.wz-spell.js .spell-row.cast .spell-solution{opacity:1;transform:none;max-height:4em;margin-top:.55rem}
+/* personal close — Eva + wand deliver the magic */
+.wz-spell-foot{display:flex;align-items:center;gap:1.1rem;flex-wrap:wrap;margin-top:clamp(40px,5vw,64px);padding-left:52px}
+.wz-spell-foot img{width:62px;height:62px;border-radius:9999px;object-fit:cover;object-position:center top;flex:none;box-shadow:0 12px 26px -14px rgba(48,33,101,.5)}
+.wz-spell-foot .ft-copy{flex:1;min-width:200px}
+.wz-spell-foot .ft-copy strong{display:block;font-size:clamp(1.05rem,1.6vw,1.25rem);font-weight:700;color:var(--wz-navy);letter-spacing:-.01em}
+.wz-spell-foot .ft-copy span{font-size:.92rem;color:rgba(0,0,51,.55)}
+.wz-pp-cta{display:inline-flex;align-items:center;gap:.5rem;background:var(--wz-paars);color:#fff;text-decoration:none;font-weight:700;font-size:.98rem;padding:.95rem 1.6rem;border-radius:9999px;border:2px solid var(--wz-paars);transition:background .3s,color .3s,transform .3s}
+.wz-pp-cta:hover{background:transparent;color:var(--wz-paars);transform:translateY(-2px)}
+.wz-pp-cta svg{transition:transform .3s}.wz-pp-cta:hover svg{transform:translateX(3px)}
+.wz-spell .wz-float{position:absolute;pointer-events:none;z-index:0;opacity:.85;animation:wz-fl 9s ease-in-out infinite}
+.wz-spell .wz-float-c{right:-2%;top:6%;width:clamp(90px,10vw,150px)}
+@media(max-width:980px){.wz-spell .wz-float-c{display:none}}
+@media(max-width:560px){.wz-spell-foot{padding-left:0}}
+@media(prefers-reduced-motion:reduce){.wz-spell-wand{display:none}}
+</style>
+
+<section class="wz-spell alignfull" id="wz-spell" aria-labelledby="wz-spell-h">
+  <img class="wz-float wz-float-c" src="hero-concepts/assets/elements/sphere.gif" alt="" aria-hidden="true">
+  <div class="wz-spell-in">
+    <p class="wz-eyebrow">Probleem → magie</p>
+    <h2 id="wz-spell-h">Herkenbaar? Wij toveren je struikelblokken om tot <em>groei</em>.</h2>
+
+    <div class="wz-spell-intro">
+      <img src="./wp-content/uploads/2024/08/stijn_whuuut-1-600x600.png" alt="Stijn van Wizarts" loading="lazy">
+      <p>“Negen op de tien ondernemers lopen vast op net dezelfde dingen. Onze job? Ze stuk voor stuk omdraaien.”<b>— Stijn, Wizarts</b></p>
+    </div>
+
+    <ol class="wz-spell-list">
+      <span class="wz-spell-fill" aria-hidden="true"></span>
+      <span class="wz-spell-wand" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4V2M15 10V8M11 6H9M21 6h-2"/><path d="M4 20l11-11"/><path d="M14 7l3 3"/></svg></span>
+
+      <li class="spell-row">
+        <span class="spell-node" aria-hidden="true"></span>
+        <span class="spell-problem"><span class="x" aria-hidden="true">✕</span>De technische kennis in je bedrijf ontbreekt</span>
+        <span class="spell-solution"><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></span>Een website die je moeiteloos zelf beheert</span>
+      </li>
+
+      <li class="spell-row">
+        <span class="spell-node" aria-hidden="true"></span>
+        <span class="spell-problem"><span class="x" aria-hidden="true">✕</span>Je mist een professionele en creatieve blik</span>
+        <span class="spell-solution"><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></span>Branding die professioneel oogt én blijft hangen</span>
+      </li>
+
+      <li class="spell-row">
+        <span class="spell-node" aria-hidden="true"></span>
+        <span class="spell-problem"><span class="x" aria-hidden="true">✕</span>Je website blijft liggen door tijdsgebrek</span>
+        <span class="spell-solution"><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></span>Vlotte opvolging — wij nemen het stuur over</span>
+      </li>
+
+      <li class="spell-row">
+        <span class="spell-node" aria-hidden="true"></span>
+        <span class="spell-problem"><span class="x" aria-hidden="true">✕</span>Je weet niet wat je website eigenlijk oplevert</span>
+        <span class="spell-solution"><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></span>Slimme meting en glasheldere rapporten</span>
+      </li>
+
+      <li class="spell-row">
+        <span class="spell-node" aria-hidden="true"></span>
+        <span class="spell-problem"><span class="x" aria-hidden="true">✕</span>Er is geen helder plan of doel voor je marketing</span>
+        <span class="spell-solution"><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></span>Een heldere strategie, concrete doelen én logische structuur</span>
+      </li>
+    </ol>
+
+    <div class="wz-spell-foot">
+      <img src="./wp-content/uploads/2024/08/eva_magic.png" alt="Eva van Wizarts" loading="lazy">
+      <div class="ft-copy"><strong>Klaar om je struikelblokken om te toveren?</strong><span>Eva &amp; het team toveren mee.</span></div>
+      <a class="wz-pp-cta" href="./expertise/index.html">Onze expertise<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var sec=document.getElementById('wz-spell');
+  if(!sec) return;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var rows=[].slice.call(sec.querySelectorAll('.spell-row'));
+  var list=sec.querySelector('.wz-spell-list');
+  var fill=sec.querySelector('.wz-spell-fill');
+  var wand=sec.querySelector('.wz-spell-wand');
+  if(reduce||!('IntersectionObserver'in window)){ rows.forEach(function(r){r.classList.add('cast');}); return; }
+  sec.classList.add('js');
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('cast'); io.unobserve(e.target); } });
+  },{threshold:.55,rootMargin:'0px 0px -18% 0px'});
+  rows.forEach(function(r){ io.observe(r); });
+  // wand rides the rail as the list scrolls through the viewport
+  var ticking=false;
+  function update(){
+    ticking=false;
+    var r=list.getBoundingClientRect();
+    var vh=window.innerHeight||document.documentElement.clientHeight;
+    var anchor=vh*0.5;                       // cast line ~ viewport middle
+    var h=Math.max(0,Math.min(r.height,anchor-r.top));
+    fill.style.height=h+'px';
+    wand.style.top=(10+h)+'px';
+  }
+  function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(update); } }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  update();
+})();
+</script>
+
+<script>
+(function(){
+  function colOf(txt){
+    var hs=document.querySelectorAll('.wp-block-heading');
+    for(var i=0;i<hs.length;i++){
+      if(hs[i].textContent.trim().indexOf(txt)===0){
+        var el=hs[i];
+        while(el&&!(el.classList&&el.classList.contains('wp-block-columns'))) el=el.parentNode;
+        return el;
+      }
+    }
+    return null;
+  }
+  var prob=colOf('Heb jij hier ook last van');
+  var sol=colOf('Wij zorgen voor een');
+  var sec=document.getElementById('wz-spell');
+  if(sec&&prob&&prob.parentNode){ prob.parentNode.insertBefore(sec, prob); prob.style.display='none'; }
+  if(sol){ sol.style.display='none'; }
 })();
 </script>
 </body>
