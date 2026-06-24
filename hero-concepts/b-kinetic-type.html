@@ -30,7 +30,7 @@ canvas#dust{position:absolute;inset:0;pointer-events:none}
 
 /* floating 3D elements (animated GIFs) */
 .geo{position:absolute;pointer-events:none;height:auto}
-.geo.sphere{bottom:11%;right:9%;width:clamp(110px,11vw,170px);opacity:.95;animation:float 7s ease-in-out infinite}
+.geo.cube{bottom:11%;right:9%;width:clamp(120px,12vw,185px);opacity:.95;animation:float 7s ease-in-out infinite}
 .geo.cross{top:14%;left:9%;width:clamp(80px,8vw,124px);opacity:.95;animation:float 8.5s ease-in-out infinite reverse}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
 
@@ -146,7 +146,7 @@ html[data-theme="dark"] .theme-toggle .ic-moon{display:block}
 <div class="stage" id="stage">
   <div class="bg"></div><div class="dots"></div>
   <canvas id="dust"></canvas>
-  <img class="geo sphere" src="assets/elements/sphere.gif" alt="" aria-hidden="true">
+  <img class="geo cube" src="assets/elements/cube.gif" alt="" aria-hidden="true">
   <img class="geo cross" src="assets/elements/x-orange.gif" alt="" aria-hidden="true">
 
   <header class="nav">
