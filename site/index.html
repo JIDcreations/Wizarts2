@@ -1396,9 +1396,26 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
     frame.id='wz-hero-frame'; frame.title='Hero concept preview'; frame.setAttribute('scrolling','no');
     // inline styles beat any theme stylesheet rule on iframes
     frame.style.cssText='display:block;width:100%;height:100vh;height:100svh;border:0;visibility:visible';
-    // let trackpad/wheel over the hero scroll the page (same-origin only)
+    // The hero is a full-viewport, non-scrolling preview, so without this it
+    // traps the page (nothing scrolls past it). Forward scroll gestures to the
+    // parent: wheel (deltaMode-normalised to px) AND touch, so it works on
+    // trackpads, mice and mobile alike. Same-origin only — silently ignored if
+    // the frame ever becomes cross-origin.
     frame.addEventListener('load',function(){
-      try{frame.contentWindow.addEventListener('wheel',function(e){window.scrollBy(0,e.deltaY);},{passive:true});}catch(e){}
+      try{
+        var w=frame.contentWindow;
+        w.addEventListener('wheel',function(e){
+          var u=e.deltaMode===1?16:e.deltaMode===2?window.innerHeight:1;
+          window.scrollBy(0,e.deltaY*u);
+        },{passive:true});
+        var ty=null;
+        w.addEventListener('touchstart',function(e){ty=e.touches[0].clientY;},{passive:true});
+        w.addEventListener('touchmove',function(e){
+          if(ty===null)return;
+          var y=e.touches[0].clientY; window.scrollBy(0,ty-y); ty=y;
+        },{passive:true});
+        w.addEventListener('touchend',function(){ty=null;},{passive:true});
+      }catch(e){}
     });
     mount.appendChild(frame);
   }
